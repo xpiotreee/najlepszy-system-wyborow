@@ -1,0 +1,12 @@
+ebean:
+  dbSchema: systemwyborow
+  migration:
+    run: true
+    autoCreate: true
+
+datasource:
+  db:
+    username: ""
+    password: ""
+    url: "jdbc:sqlite:database.db"
+    driver: org.sqlite.JDBC
