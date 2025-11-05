@@ -1,17 +1,16 @@
 package pl.teamzwyciezcow.najlepszysystemwyborow;
 
-import io.ebean.migration.MigrationConfig;
-import io.ebean.migration.MigrationRunner;
+import io.ebean.config.PlatformConfig;
+import io.ebean.dbmigration.DbMigration;
+import io.ebean.platform.sqlite.SQLitePlatform;
+
+import java.io.IOException;
 
 public class DbSetup {
-    public static void main(String[] args) {
-        MigrationConfig config = new MigrationConfig();
-        config.setMigrationPath("dbmigration");;
-        config.setDbUsername("");
-        config.setDbPassword("");
-        config.setDbUrl("jdbc:sqlite:database.db");
-
-        MigrationRunner runner = new MigrationRunner(config);
-        runner.run();
+    public static void run() throws IOException {
+        DbMigration dbMigration = DbMigration.create();
+        dbMigration.setPlatform(new SQLitePlatform());
+        dbMigration.setPathToResources("src/main/resources");
+        String version = dbMigration.generateMigration();
     }
 }
