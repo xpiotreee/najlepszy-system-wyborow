@@ -33,13 +33,12 @@ public class Main extends Application {
         String formattedNow = now.format(formatter);
 
         String name = "testowy_" +  formattedNow;
-        User user = new User();
-        user.setName(name);
+        User user = new User(name, "123123120", name + "@example.com", "password");
 
         DB.save(user);
         User found = DB.find(User.class).where().eq("name", name).findOne();
         assert found != null;
-        System.out.println(found.getName());
+        System.out.println(found.getFullName());
         launch(args);
     }
 }

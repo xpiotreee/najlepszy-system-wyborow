@@ -1,6 +1,5 @@
 package pl.teamzwyciezcow.najlepszysystemwyborow;
 
-import io.ebean.config.PlatformConfig;
 import io.ebean.dbmigration.DbMigration;
 import io.ebean.platform.sqlite.SQLitePlatform;
 
