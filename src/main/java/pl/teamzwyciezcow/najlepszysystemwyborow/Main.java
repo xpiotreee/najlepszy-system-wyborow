@@ -6,12 +6,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("GUI_do_logowania.fxml"));
+        Scene scene = new Scene(root, 600, 400);
+        String css = Objects.requireNonNull(this.getClass().getResource("main.css")).toExternalForm();
+        scene.getStylesheets().add(css);
+
         stage.setTitle("Hello JavaFX!");
-        stage.setScene(new Scene(root, 600, 400));
+        stage.setScene(scene);
         stage.show();
     }
 
