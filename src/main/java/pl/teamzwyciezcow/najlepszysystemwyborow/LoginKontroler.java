@@ -5,7 +5,6 @@ import javafx.scene.control.TextField;
 
 public class LoginKontroler {
 
-    // Wstrzyknięcie elementów z FXML
     @FXML
     private TextField emailField;
 
@@ -15,9 +14,6 @@ public class LoginKontroler {
     @FXML
     private Label messageLabel;
 
-    /**
-     * Metoda wywoływana po kliknięciu przycisku "Zaloguj"
-     */
     @FXML
     private void handleLoginButton() {
         String email = emailField.getText();
@@ -26,7 +22,6 @@ public class LoginKontroler {
         if (email.equals("test@app.pl") && password.equals("pass123")) {
             messageLabel.setText("Zalogowano pomyślnie!");
             messageLabel.setStyle("-fx-text-fill: green;");
-            // Tutaj nastąpiłoby przełączenie widoku
         } else {
             messageLabel.setText("Błędny email lub hasło.");
             messageLabel.setStyle("-fx-text-fill: red;");
