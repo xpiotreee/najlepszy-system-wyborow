@@ -1,10 +1,10 @@
-package pl.teamzwyciezcow.najlepszysystemwyborow.services;
+package pl.teamzwyciezcow.najlepszysystemwyborow.services.impl;
 
 import io.ebean.DB;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Candidate;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
-import pl.teamzwyciezcow.najlepszysystemwyborow.models.User;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.CandidateRepository;
+import pl.teamzwyciezcow.najlepszysystemwyborow.services.CandidateService;
 
 public class CandidateServiceImpl implements CandidateService {
 

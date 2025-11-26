@@ -1,10 +1,11 @@
-package pl.teamzwyciezcow.najlepszysystemwyborow.services;
+package pl.teamzwyciezcow.najlepszysystemwyborow.services.impl;
 
 import io.ebean.DB;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Candidate;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.ResultVisibility;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.ElectionRepository;
+import pl.teamzwyciezcow.najlepszysystemwyborow.services.ElectionService;
 
 import java.time.LocalDateTime;
 import java.util.List;

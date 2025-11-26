@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.User;
+import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.UserRepositoryImpl;
+import pl.teamzwyciezcow.najlepszysystemwyborow.services.UserService;
+import pl.teamzwyciezcow.najlepszysystemwyborow.services.impl.UserServiceImpl;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -22,23 +25,15 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-//        try {
-//            DbSetup.run();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        DbSetup.init();
+        try {
+            UserService users = new UserServiceImpl(new UserRepositoryImpl());
+            User logged = users.login("testxowy@example.com", "passwordx");
+            System.out.println("Logged in as: " + logged.getFullName());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String formattedNow = now.format(formatter);
-
-        String name = "testowy_" +  formattedNow;
-        User user = new User(name, "123123120", name + "@example.com", "password");
-
-        DB.save(user);
-        User found = DB.find(User.class).where().eq("name", name).findOne();
-        assert found != null;
-        System.out.println(found.getFullName());
         launch(args);
     }
 }
