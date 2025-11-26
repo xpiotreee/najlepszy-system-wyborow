@@ -6,6 +6,14 @@ import io.ebean.platform.sqlite.SQLitePlatform;
 import java.io.IOException;
 
 public class DbSetup {
+    public static void main(String[] args) {
+        try {
+            run();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void run() throws IOException {
         DbMigration dbMigration = DbMigration.create();
         dbMigration.setPlatform(new SQLitePlatform());

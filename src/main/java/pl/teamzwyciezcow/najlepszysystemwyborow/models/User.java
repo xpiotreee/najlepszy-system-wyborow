@@ -1,16 +1,28 @@
 package pl.teamzwyciezcow.najlepszysystemwyborow.models;
 
+import io.ebean.Model;
+import io.ebean.annotation.Length;
+import io.ebean.annotation.NotNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class User extends Model {
     @Id
     long id;
 
+    @NotNull
+    @Length(255)
     String fullName;
+
+    @NotNull
+    @Length(11)
     String pesel;
+
+    @NotNull
     String email;
+
+    @NotNull
     String password;
 
     public User(String fullName, String pesel, String email, String password) {

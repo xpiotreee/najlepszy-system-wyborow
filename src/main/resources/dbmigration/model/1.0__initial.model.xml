@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
     <changeSet type="apply">
+        <createTable name="candidate" pkName="pk_candidate">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="name" type="varchar(255)" notnull="true"/>
+            <column name="description" type="TEXT"/>
+            <column name="photo_url" type="varchar"/>
+            <column name="external_link" type="varchar"/>
+            <column name="election_id" type="bigint" notnull="true" references="election.id" foreignKeyName="fk_candidate_election_id" foreignKeyIndex="ix_candidate_election_id"/>
+        </createTable>
+        <createTable name="election" pkName="pk_election">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="title" type="varchar(255)" notnull="true"/>
+            <column name="description" type="TEXT"/>
+            <column name="start_date" type="localdatetime" notnull="true"/>
+            <column name="end_date" type="localdatetime" notnull="true"/>
+            <column name="result_visibility" type="varchar(11)" notnull="true" checkConstraint="check ( result_visibility in ('ALWAYS','AFTER_VOTE','AFTER_CLOSE'))" checkConstraintName="ck_election_result_visibility"/>
+        </createTable>
         <createTable name="user" pkName="pk_user">
             <column name="id" type="bigint" primaryKey="true"/>
-            <column name="full_name" type="varchar"/>
-            <column name="pesel" type="varchar"/>
-            <column name="email" type="varchar"/>
-            <column name="password" type="varchar"/>
+            <column name="full_name" type="varchar(255)" notnull="true"/>
+            <column name="pesel" type="varchar(11)" notnull="true"/>
+            <column name="email" type="varchar" notnull="true"/>
+            <column name="password" type="varchar" notnull="true"/>
         </createTable>
     </changeSet>
 </migration>
