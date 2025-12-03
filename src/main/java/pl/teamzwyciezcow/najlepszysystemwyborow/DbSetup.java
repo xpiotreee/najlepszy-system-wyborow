@@ -25,13 +25,13 @@ public class DbSetup {
 
     public static void init() {
         String testUsername = "testowy";
-        User found = AppProvider
+        boolean isEmpty = AppProvider
                 .getInstance()
                 .getUserService()
                 .getRepository()
                 .findAll(testUsername, null)
-                .getFirst();
-        if (found != null) {
+                .isEmpty();
+        if (!isEmpty) {
             System.out.println("Test user found skipping Db init.");
             return;
         }
