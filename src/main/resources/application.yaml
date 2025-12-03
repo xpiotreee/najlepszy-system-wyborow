@@ -1,0 +1,11 @@
+ebean:
+  datasource: db
+  migration:
+    run: true
+
+datasource:
+  db:
+    username: ""
+    password: ""
+    url: "jdbc:sqlite:database.sqlite3"
+    driver: org.sqlite.JDBC

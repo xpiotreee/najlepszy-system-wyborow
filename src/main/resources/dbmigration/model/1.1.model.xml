@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
+    <changeSet type="apply">
+        <createTable name="admin" pkName="pk_admin">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="full_name" type="varchar(255)" notnull="true"/>
+            <column name="email" type="varchar" notnull="true"/>
+            <column name="password" type="varchar" notnull="true"/>
+        </createTable>
+    </changeSet>
+</migration>
