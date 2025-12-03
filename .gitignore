@@ -3,6 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .kotlin
+database.sqlite3
 
 ### IntelliJ IDEA ###
 .idea

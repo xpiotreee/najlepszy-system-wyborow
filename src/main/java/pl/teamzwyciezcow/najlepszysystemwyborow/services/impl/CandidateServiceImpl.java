@@ -41,4 +41,9 @@ public class CandidateServiceImpl implements CandidateService {
         candidate.setExternalLink(externalLink);
         return candidateRepository.save(candidate);
     }
+
+    @Override
+    public CandidateRepository getRepository() {
+        return this.candidateRepository;
+    }
 }

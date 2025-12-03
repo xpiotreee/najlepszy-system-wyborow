@@ -5,6 +5,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.UserRepository;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.UserService;
 
 public class UserServiceImpl implements UserService {
+    private User loggedIn;
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -26,7 +27,8 @@ public class UserServiceImpl implements UserService {
             throw new Exception(email + " już jest zajęty.");
         }
 
-        return this.createUser(fullName, email, password, pesel);
+        this.loggedIn = this.createUser(fullName, email, password, pesel);
+        return this.loggedIn;
     }
 
     @Override
@@ -41,11 +43,22 @@ public class UserServiceImpl implements UserService {
             throw new Exception("Niepoprawne dane logowania.");
         }
 
+        this.loggedIn = user;
         return user;
     }
 
     @Override
     public void logout() {
-        // TODO IMPLEMENT
+        this.loggedIn = null;
+    }
+
+    @Override
+    public User getLoggedIn() {
+        return this.loggedIn;
+    }
+
+    @Override
+    public UserRepository getRepository() {
+        return this.userRepository;
     }
 }

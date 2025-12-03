@@ -25,15 +25,32 @@ public class DbSetup {
 
     public static void init() {
         String testUsername = "testowy";
-        // TODO use service
-        User found = DB.find(User.class).where().eq("fullName", "testowy").findOne();
+        User found = AppProvider
+                .getInstance()
+                .getUserService()
+                .getRepository()
+                .findAll(testUsername, null)
+                .getFirst();
         if (found != null) {
             System.out.println("Test user found skipping Db init.");
             return;
         }
 
         System.out.println("Db init");
-        User user = new User(testUsername, "123123120", testUsername + "@example.com", "password");
-        DB.save(user);
+        AppProvider.getInstance()
+                .getUserService()
+                .createUser(
+                        testUsername,
+                        testUsername + "@example.com",
+                        "password",
+                        "123123120"
+                );
+        AppProvider.getInstance()
+                .getAdminService()
+                .createUser(
+                        "admin",
+                        "admin@example.com",
+                        "password"
+                );
     }
 }

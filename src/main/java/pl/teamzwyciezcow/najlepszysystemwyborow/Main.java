@@ -28,7 +28,7 @@ public class Main extends Application {
         DbSetup.init();
         try {
             UserService users = new UserServiceImpl(new UserRepositoryImpl());
-            User logged = users.login("testxowy@example.com", "passwordx");
+            User logged = users.login("testowy@example.com", "password");
             System.out.println("Logged in as: " + logged.getFullName());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());

@@ -62,4 +62,9 @@ public class ElectionServiceImpl implements ElectionService {
         
         return electionRepository.save(election);
     }
+
+    @Override
+    public ElectionRepository getRepository() {
+        return this.electionRepository;
+    }
 }
