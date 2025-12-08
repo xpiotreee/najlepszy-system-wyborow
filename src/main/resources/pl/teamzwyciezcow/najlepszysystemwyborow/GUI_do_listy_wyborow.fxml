@@ -74,7 +74,7 @@
                 <TableColumn fx:id="startDateColumn" prefWidth="109.5999755859375" text="Data rozpoczęcia:" />
                   <TableColumn fx:id="endDateColumn" prefWidth="112.79998779296875" text="Data zakończenia:" />
                   <TableColumn fx:id="votesColumn" minWidth="0.0" prefWidth="175.20001220703125" text="Liczba oddanych głosów:" />
-                  <TableColumn prefWidth="100.0" />
+                  <TableColumn fx:id="actionColumn" prefWidth="100.0" text="Akcje" />
               </columns>
             </TableView>
             <HBox disable="true" prefHeight="40.0" prefWidth="200.0" spacing="8.0" visible="false">
