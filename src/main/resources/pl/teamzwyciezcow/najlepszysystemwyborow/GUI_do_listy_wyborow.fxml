@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.ElectionListController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -68,12 +68,12 @@
                   <Insets left="8.0" />
                </padding>
             </HBox>
-            <TableView prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="electionTable" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="100.800048828125" text="Tytuł wyborów:" />
-                <TableColumn prefWidth="109.5999755859375" text="Data rozpoczęcia:" />
-                  <TableColumn prefWidth="112.79998779296875" text="Data zakończenia:" />
-                  <TableColumn minWidth="0.0" prefWidth="175.20001220703125" text="Liczba oddanych głosów:" />
+                <TableColumn fx:id="titleColumn" prefWidth="100.800048828125" text="Tytuł wyborów:" />
+                <TableColumn fx:id="startDateColumn" prefWidth="109.5999755859375" text="Data rozpoczęcia:" />
+                  <TableColumn fx:id="endDateColumn" prefWidth="112.79998779296875" text="Data zakończenia:" />
+                  <TableColumn fx:id="votesColumn" minWidth="0.0" prefWidth="175.20001220703125" text="Liczba oddanych głosów:" />
                   <TableColumn prefWidth="100.0" />
               </columns>
             </TableView>
