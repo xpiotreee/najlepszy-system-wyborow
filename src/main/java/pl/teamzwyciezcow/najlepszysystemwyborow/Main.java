@@ -1,5 +1,6 @@
 package pl.teamzwyciezcow.najlepszysystemwyborow;
 
+import atlantafx.base.theme.PrimerLight;
 import io.ebean.DB;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,7 @@ import java.util.Objects;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         Parent root = FXMLLoader.load(getClass().getResource("GUI_do_logowania.fxml"));
         Scene scene = new Scene(root, 600, 400);
         String css = Objects.requireNonNull(this.getClass().getResource("main.css")).toExternalForm();

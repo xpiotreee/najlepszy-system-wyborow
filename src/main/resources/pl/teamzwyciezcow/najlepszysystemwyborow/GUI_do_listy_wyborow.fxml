@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lista wyborów" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" disable="true" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="550.0" visible="false">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="104.0" styleClass="lista-zakladki">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tytuł wyborów:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="120.0" styleClass="lista-zakladki">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data zakończenia:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" prefHeight="38.0" prefWidth="120.0" styleClass="lista-zakladki">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data stworzenia:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" disable="true" prefHeight="100.0" prefWidth="120.0" styleClass="lista-zakladki">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Łączna liczba oddanych głosów:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="8.0" />
+               </padding>
+            </HBox>
+            <TableView prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="jajco" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <HBox disable="true" prefHeight="40.0" prefWidth="200.0" spacing="8.0" visible="false">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prezydenckie" wrappingWidth="104.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="12.07.2024r." wrappingWidth="120.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="05.06.1014r." wrappingWidth="120.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1800000" wrappingWidth="120.0" />
+                  <ComboBox prefWidth="150.0" />
+               </children>
+               <padding>
+                  <Insets left="8.0" right="8.0" />
+               </padding></HBox>
+            <HBox disable="true" prefHeight="40.0" prefWidth="200.0" spacing="8.0" visible="false" />
+            <HBox disable="true" prefHeight="40.0" prefWidth="200.0" spacing="8.0" visible="false" />
+            <HBox disable="true" prefHeight="40.0" prefWidth="200.0" spacing="8.0" visible="false" />
+            <HBox disable="true" prefHeight="40.0" prefWidth="200.0" spacing="8.0" visible="false" />
+            <HBox disable="true" prefHeight="40.0" prefWidth="200.0" spacing="8.0" visible="false" />
+            <HBox disable="true" prefHeight="40.0" prefWidth="200.0" spacing="8.0" visible="false" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
