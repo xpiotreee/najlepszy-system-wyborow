@@ -7,6 +7,8 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.UserRepository;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.AdminService;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.UserService;
 
+import java.util.NoSuchElementException;
+
 public class AdminServiceImpl implements AdminService {
     private Admin loggedIn;
     private final AdminRepository adminRepository;
@@ -25,8 +27,10 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin login(String email, String password) throws Exception {
-        Admin admin = this.adminRepository.findAll(null, email).getFirst();
-        if (admin == null) {
+        Admin admin;
+        try {
+            admin = this.adminRepository.findAll(null, email).getFirst();
+        } catch (NoSuchElementException e) {
             throw new Exception("Nie znaleziono admina z emailem: " + email);
         }
 

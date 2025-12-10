@@ -4,6 +4,8 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.models.User;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.UserRepository;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.UserService;
 
+import java.util.NoSuchElementException;
+
 public class UserServiceImpl implements UserService {
     private User loggedIn;
     private final UserRepository userRepository;
@@ -33,8 +35,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(String email, String password) throws Exception {
-        User user = this.userRepository.findAll(null, email).getFirst();
-        if (user == null) {
+        User user;
+        try {
+            user = this.userRepository.findAll(null, email).getFirst();
+        } catch (NoSuchElementException e) {
             throw new Exception("Nie znaleziono użytkownika z emailem: " + email);
         }
 
