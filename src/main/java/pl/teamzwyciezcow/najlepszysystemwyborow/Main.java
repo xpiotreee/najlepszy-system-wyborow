@@ -1,5 +1,6 @@
 package pl.teamzwyciezcow.najlepszysystemwyborow;
 
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +16,8 @@ import java.util.Objects;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("PanelLogowaniaAdmin.fxml"));
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+        Parent root = FXMLLoader.load(getClass().getResource("GUI_do_listy_wyborow.fxml"));
         Scene scene = new Scene(root, 600, 400);
         String css = Objects.requireNonNull(this.getClass().getResource("main.css")).toExternalForm();
         scene.getStylesheets().add(css);
