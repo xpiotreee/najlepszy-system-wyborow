@@ -1,4 +1,4 @@
-package pl.teamzwyciezcow.najlepszysystemwyborow;
+package pl.teamzwyciezcow.najlepszysystemwyborow.controllers.user.elections;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -11,13 +11,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.application.Platform;
+import pl.teamzwyciezcow.najlepszysystemwyborow.AppProvider;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.ElectionService;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ElectionListController {
+public class IndexController {
 
     @FXML
     private TableView<Election> electionTable;
@@ -39,7 +40,7 @@ public class ElectionListController {
 
     private final ElectionService electionService;
 
-    public ElectionListController() {
+    public IndexController() {
         this.electionService = AppProvider.getInstance().getElectionService();
     }
 

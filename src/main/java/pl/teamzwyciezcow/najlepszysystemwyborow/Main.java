@@ -17,7 +17,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-        Parent root = FXMLLoader.load(getClass().getResource("GUI_do_listy_wyborow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/admin/auth/login.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("views/user/elections/index.fxml"));
         Scene scene = new Scene(root, 600, 400);
         String css = Objects.requireNonNull(this.getClass().getResource("main.css")).toExternalForm();
         scene.getStylesheets().add(css);

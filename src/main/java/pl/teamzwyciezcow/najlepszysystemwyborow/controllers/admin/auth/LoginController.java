@@ -1,4 +1,4 @@
-package pl.teamzwyciezcow.najlepszysystemwyborow;
+package pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.auth;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,7 +8,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.AppProvider;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Admin;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.AdminService;
 
-public class LoginKontroler {
+public class LoginController {
 
     @FXML
     private TextField emailField;
