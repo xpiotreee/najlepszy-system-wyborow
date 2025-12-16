@@ -1,5 +1,5 @@
 .background {
-    -fx-background-image: url("backgroundl.jpg");
+    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundl.jpg.jpg");
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
@@ -7,14 +7,27 @@
 .blur_field{
     -fx-opacity: 0.3;
     -fx-border-color: black;
-    -fx-border-width: 1px;
-    -fx-border-radius: 16;
-    -fx-background-radius: 16;
-    -fx-control-inner-background-radius: 16;
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 16px;
+    -fx-control-inner-background-radius: 16px;
 }
 .blur_field:hover{
-    -fx-opacity: 0.1;
+    -fx-opacity: 0.5;
     -fx-background-color:lightgray;
+}
+/* 2. The Internal Input: Make transparent to show parent's style */
+.blur_field > .text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    /* Add padding here to move text away from the curved border */
+    -fx-padding: 0 0 0 10;
+}
+
+/* 3. The Arrow Button: Make transparent (or style separately) */
+.blur_field > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
 }
 .guzik{
     -fx-opacity: 0.7;
@@ -30,6 +43,63 @@
 .lista-zakladki{
 -fx-border-width: 1px;
 -fx-border-color: black;
+}
+.main-container {
+    -fx-padding: 30;
+    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundf.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+}
+
+.label {
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.section-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.text-field, .text-area, .date-picker .lookup(".text-field"), .combo-box {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #888;
+    -fx-background-radius: 5;
+    -fx-border-color: #444;
+    -fx-border-radius: 5;
+}
+
+.button-primary {
+    -fx-text-fill: black;
+}
+
+.button-submit {
+    -fx-background-color: #00c853;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 10 20;
+}
+
+.create-kandydat-pane {
+    -fx-padding: 15;
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #333;
+    -fx-border-radius: 10;
+    -fx-opacity: 0.5;
+}
+.kolorek {
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+    -fx-opacity:1;
 }
 
 
