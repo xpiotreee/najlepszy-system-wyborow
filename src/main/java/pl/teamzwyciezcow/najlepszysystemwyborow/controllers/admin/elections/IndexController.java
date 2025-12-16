@@ -1,10 +1,11 @@
-package pl.teamzwyciezcow.najlepszysystemwyborow.controllers.user.elections;
+package pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.elections;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button; // Zmieniono import z ComboBox na Button
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,7 +49,7 @@ public class IndexController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        votesColumn.setCellValueFactory(cellData -> new SimpleStringProperty("0"));
+        votesColumn.setCellValueFactory(cellData -> new SimpleStringProperty("0")); 
 
         setupActionColumn();
         loadElections();
@@ -56,14 +57,33 @@ public class IndexController {
 
     private void setupActionColumn() {
         Callback<TableColumn<Election, Void>, TableCell<Election, Void>> cellFactory = param -> new TableCell<>() {
-            // Tworzymy przycisk zamiast ComboBoxa
-            private final Button voteButton = new Button("Głosuj");
+            private final ComboBox<String> comboBox = new ComboBox<>();
 
             {
-                // Ustawiamy akcję przycisku
-                voteButton.setOnAction(event -> {
+                comboBox.getItems().addAll("Zobacz", "Edytuj", "Usuń");
+                comboBox.setPromptText("Opcje");
+                comboBox.setMaxWidth(Double.MAX_VALUE);
+                
+                comboBox.setOnAction(event -> {
+                    String selectedOption = comboBox.getSelectionModel().getSelectedItem();
                     Election election = getTableView().getItems().get(getIndex());
-                    handleVote(election);
+
+                    if (selectedOption != null) {
+                        switch (selectedOption) {
+                            case "Zobacz":
+                                System.out.println("Zobacz election: " + election.getTitle());
+                                break;
+                            case "Edytuj":
+                                System.out.println("Edytuj election: " + election.getTitle());
+                                break;
+                            case "Usuń":
+                                System.out.println("Usuń election: " + election.getTitle());
+                                deleteElection(election);
+                                break;
+                        }
+
+                        Platform.runLater(() -> comboBox.getSelectionModel().clearSelection());
+                    }
                 });
             }
 
@@ -73,7 +93,7 @@ public class IndexController {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(voteButton);
+                    setGraphic(comboBox);
                 }
             }
         };
@@ -81,13 +101,11 @@ public class IndexController {
         actionColumn.setCellFactory(cellFactory);
     }
 
-    // Metoda obsługująca kliknięcie w przycisk "Oddaj głos"
-    private void handleVote(Election election) {
-        System.out.println("Głosowanie w wyborach: " + election.getTitle());
-
-        // TODO: Tutaj wpisz logikę przejścia do ekranu głosowania
-        // np. otwarcie nowego okna lub zmiana sceny:
-        // AppProvider.getInstance().getNavigation().navigateToVoting(election);
+    private void deleteElection(Election election) {
+        if (electionService != null) {
+            electionService.getRepository().deleteById(election.getId());
+            loadElections();
+        }
     }
 
     private void loadElections() {
@@ -97,7 +115,4 @@ public class IndexController {
             electionTable.setItems(electionList);
         }
     }
-
-    // Usunąłem metodę deleteElection, ponieważ w widoku użytkownika (user)
-    // zazwyczaj tylko się głosuje, a nie usuwa wybory.
 }

@@ -17,7 +17,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-        Parent root = FXMLLoader.load(getClass().getResource("views/admin/elections/create.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/user/elections/index.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("views/admin/elections/create.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("views/admin/auth/login.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("views/user/elections/index.fxml"));
