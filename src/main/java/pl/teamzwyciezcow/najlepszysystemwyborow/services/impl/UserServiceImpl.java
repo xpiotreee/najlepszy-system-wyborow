@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
             throw new Exception("Nie znaleziono użytkownika z emailem: " + email);
         }
 
-        // TODO hashing
+        
         if (!user.getPassword().equals(password)) {
             throw new Exception("Niepoprawne dane logowania.");
         }

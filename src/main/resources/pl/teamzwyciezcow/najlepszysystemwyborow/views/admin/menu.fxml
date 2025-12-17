@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox alignment="CENTER_LEFT" prefHeight="100.0" style="-fx-spacing: 4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.MenuController">
+   <children>
+      <Button mnemonicParsing="false" onAction="#handleShowAdminHome" text="Panel Admina" />
+      <Button mnemonicParsing="false" onAction="#handleShowAdminElections" text="Zarządzaj Wyborami" />
+      <Region HBox.hgrow="ALWAYS" />
+      <Button mnemonicParsing="false" onAction="#handleLogout" text="Wyloguj" />
+   </children>
+</HBox>

@@ -1,5 +1,5 @@
 .background {
-    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundl.jpg.jpg");
+    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundl.jpg");
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
@@ -46,7 +46,7 @@
 }
 .main-container {
     -fx-padding: 30;
-    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundf.jpg");
+    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundl.jpg");
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;

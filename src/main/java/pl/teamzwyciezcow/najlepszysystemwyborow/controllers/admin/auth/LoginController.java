@@ -29,6 +29,9 @@ public class LoginController {
             Admin admin = adminService.login(email, password);
             messageLabel.setText("Zalogowano pomyślnie jako " + admin.getFullName() + "!");
             messageLabel.setStyle("-fx-text-fill: green;");
+            
+            AppProvider.getInstance().getMainController().showAdminMenu();
+            AppProvider.getInstance().getMainController().loadView("admin/home");
         } catch (Exception e) {
             messageLabel.setText("Error " + e.getMessage());
             messageLabel.setStyle("-fx-text-fill: red;");

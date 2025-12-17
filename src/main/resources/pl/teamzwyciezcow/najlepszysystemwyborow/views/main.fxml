@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 
 
 <BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.MainController">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-spacing: 4;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" style="-fx-spacing: 4;" BorderPane.alignment="CENTER">
          <children>
             <Button id="nav-homepage" mnemonicParsing="false" onAction="#handleShowHomepage" text="Strona główna" />
-            <Button id="nav-admin" layoutX="10.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleShowAdmin" text="Admin" />
-            <Button id="nav-user" layoutX="107.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleShowUser" text="User" />
+            <Button id="nav-elections" mnemonicParsing="false" onAction="#handleShowElections" text="Wybory" />
+            <Region HBox.hgrow="ALWAYS" />
+            <MenuButton mnemonicParsing="false" text="Login">
+              <items>
+                <MenuItem id="nav-admin" mnemonicParsing="false" onAction="#handleShowAdmin" text="Admin" />
+                <MenuItem id="nav-user" mnemonicParsing="false" onAction="#handleShowUser" text="User" />
+              </items>
+            </MenuButton>
          </children>
       </HBox>
    </top>

@@ -1,15 +1,14 @@
 package pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.elections;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import pl.teamzwyciezcow.najlepszysystemwyborow.AppProvider;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
@@ -33,9 +32,6 @@ public class IndexController {
     private TableColumn<Election, LocalDateTime> endDateColumn;
 
     @FXML
-    private TableColumn<Election, String> votesColumn;
-
-    @FXML
     private TableColumn<Election, Void> actionColumn;
 
     private final ElectionService electionService;
@@ -49,42 +45,38 @@ public class IndexController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        votesColumn.setCellValueFactory(cellData -> new SimpleStringProperty("0")); 
 
         setupActionColumn();
         loadElections();
     }
 
+    @FXML
+    private void handleCreateElection() {
+        AppProvider.getInstance().getMainController().loadView("admin/elections/create");
+    }
+
     private void setupActionColumn() {
         Callback<TableColumn<Election, Void>, TableCell<Election, Void>> cellFactory = param -> new TableCell<>() {
-            private final ComboBox<String> comboBox = new ComboBox<>();
+            private final javafx.scene.control.MenuButton menuButton = new javafx.scene.control.MenuButton("Akcje");
+            private final javafx.scene.control.MenuItem viewItem = new javafx.scene.control.MenuItem("Pokaż");
+            private final javafx.scene.control.MenuItem editItem = new javafx.scene.control.MenuItem("Edytuj");
+            private final javafx.scene.control.MenuItem deleteItem = new javafx.scene.control.MenuItem("Usuń");
 
             {
-                comboBox.getItems().addAll("Zobacz", "Edytuj", "Usuń");
-                comboBox.setPromptText("Opcje");
-                comboBox.setMaxWidth(Double.MAX_VALUE);
-                
-                comboBox.setOnAction(event -> {
-                    String selectedOption = comboBox.getSelectionModel().getSelectedItem();
+                viewItem.setOnAction(event -> {
                     Election election = getTableView().getItems().get(getIndex());
-
-                    if (selectedOption != null) {
-                        switch (selectedOption) {
-                            case "Zobacz":
-                                System.out.println("Zobacz election: " + election.getTitle());
-                                break;
-                            case "Edytuj":
-                                System.out.println("Edytuj election: " + election.getTitle());
-                                break;
-                            case "Usuń":
-                                System.out.println("Usuń election: " + election.getTitle());
-                                deleteElection(election);
-                                break;
-                        }
-
-                        Platform.runLater(() -> comboBox.getSelectionModel().clearSelection());
-                    }
+                    handleView(election);
                 });
+                editItem.setOnAction(event -> {
+                    Election election = getTableView().getItems().get(getIndex());
+                    handleEdit(election);
+                });
+                deleteItem.setOnAction(event -> {
+                    Election election = getTableView().getItems().get(getIndex());
+                    handleDelete(election);
+                });
+                
+                menuButton.getItems().addAll(viewItem, editItem, deleteItem);
             }
 
             @Override
@@ -93,7 +85,7 @@ public class IndexController {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(comboBox);
+                    setGraphic(menuButton);
                 }
             }
         };
@@ -101,11 +93,19 @@ public class IndexController {
         actionColumn.setCellFactory(cellFactory);
     }
 
-    private void deleteElection(Election election) {
-        if (electionService != null) {
-            electionService.getRepository().deleteById(election.getId());
-            loadElections();
-        }
+    private void handleView(Election election) {
+        System.out.println("Podgląd wyborów: " + election.getTitle());
+        
+    }
+
+    private void handleEdit(Election election) {
+        System.out.println("Edycja wyborów: " + election.getTitle());
+        
+    }
+
+    private void handleDelete(Election election) {
+        System.out.println("Usuwanie wyborów: " + election.getTitle());
+        
     }
 
     private void loadElections() {

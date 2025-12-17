@@ -34,7 +34,7 @@ public class AdminServiceImpl implements AdminService {
             throw new Exception("Nie znaleziono admina z emailem: " + email);
         }
 
-        // TODO hashing
+        
         if (!admin.getPassword().equals(password)) {
             throw new Exception("Niepoprawne dane logowania.");
         }
