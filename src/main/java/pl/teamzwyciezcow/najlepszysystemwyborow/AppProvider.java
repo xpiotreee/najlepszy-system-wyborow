@@ -1,5 +1,6 @@
 package pl.teamzwyciezcow.najlepszysystemwyborow;
 
+import pl.teamzwyciezcow.najlepszysystemwyborow.controllers.NavigationController;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.AdminRepositoryImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.CandidateRepositoryImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.ElectionRepositoryImpl;
@@ -15,6 +16,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.services.impl.UserServiceImpl;
 
 public class AppProvider {
     private static AppProvider instance;
+    private NavigationController mainController;
     private AdminService adminService;
     private UserService userService;
     private ElectionService electionService;
@@ -33,6 +35,14 @@ public class AppProvider {
         }
 
         return instance;
+    }
+
+    public NavigationController getMainController() {
+        return mainController;
+    }
+
+    public void setMainController(NavigationController mainController) {
+        this.mainController = mainController;
     }
 
     public AdminService getAdminService() {

@@ -8,7 +8,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.Main;
 
 import java.io.IOException;
 
-public class MainController {
+public class MainController implements NavigationController {
     @FXML
     BorderPane mainBorderPane;
 

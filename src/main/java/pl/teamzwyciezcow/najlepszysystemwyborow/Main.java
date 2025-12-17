@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pl.teamzwyciezcow.najlepszysystemwyborow.controllers.NavigationController;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.User;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.UserRepositoryImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.UserService;
@@ -17,29 +18,23 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
-        Parent root = FXMLLoader.load(getClass().getResource("views/user/elections/index.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("views/admin/elections/create.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("views/admin/auth/login.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("views/user/elections/index.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/main.fxml"));
+        Parent root = loader.load();
+        NavigationController mainController = loader.getController();
+        AppProvider.getInstance().setMainController(mainController);
+
         Scene scene = new Scene(root, 600, 400);
         String css = Objects.requireNonNull(this.getClass().getResource("main.css")).toExternalForm();
         scene.getStylesheets().add(css);
 
-        stage.setTitle("Hello JavaFX!");
+        stage.setTitle("Najlepszy system wyborów");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
         DbSetup.init();
-        try {
-            UserService users = new UserServiceImpl(new UserRepositoryImpl());
-            User logged = users.login("testowy@example.com", "password");
-            System.out.println("Logged in as: " + logged.getFullName());
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-
         launch(args);
     }
 }
