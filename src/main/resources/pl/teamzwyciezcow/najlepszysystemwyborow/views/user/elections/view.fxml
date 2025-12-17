@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.user.elections.ViewController">
+   <children>
+      <Label fx:id="titleLabel" text="Tytuł wyborów">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="descriptionLabel" text="Opis wyborów" wrapText="true" />
+      <Label fx:id="dateLabel" text="Data" />
+      
+      <Label text="Kandydaci:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <javafx.scene.control.ScrollPane fitToWidth="true" prefHeight="200.0">
+         <content>
+            <VBox fx:id="candidatesBox" spacing="10.0" style="-fx-padding: 10;" />
+         </content>
+      </javafx.scene.control.ScrollPane>
+   </children>
+</VBox>

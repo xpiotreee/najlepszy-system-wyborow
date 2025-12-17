@@ -57,13 +57,13 @@ public class IndexController {
     private void setupActionColumn() {
         Callback<TableColumn<Election, Void>, TableCell<Election, Void>> cellFactory = param -> new TableCell<>() {
             
-            private final Button voteButton = new Button("Głosuj");
+            private final Button voteButton = new Button("Pokaż");
 
             {
                 
                 voteButton.setOnAction(event -> {
                     Election election = getTableView().getItems().get(getIndex());
-                    handleVote(election);
+                    handleShow(election);
                 });
             }
 
@@ -82,12 +82,13 @@ public class IndexController {
     }
 
     
-    private void handleVote(Election election) {
-        System.out.println("Głosowanie w wyborach: " + election.getTitle());
-
+    private void handleShow(Election election) {
+        ViewController controller = (ViewController) AppProvider.getInstance().getMainController()
+                .loadViewWithController("user/elections/view");
         
-        
-        
+        if (controller != null) {
+            controller.setElection(election);
+        }
     }
 
     private void loadElections() {

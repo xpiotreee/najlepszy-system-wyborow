@@ -56,12 +56,19 @@ public class MainController implements NavigationController {
     }
 
     public void loadView(String view) {
+        loadViewWithController(view);
+    }
+
+    @Override
+    public Object loadViewWithController(String view) {
         try {
             String path = "views/" + view + ".fxml";
             FXMLLoader loader = new FXMLLoader(Main.class.getResource(path));
             mainBorderPane.setCenter(loader.load());
+            return loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 }
