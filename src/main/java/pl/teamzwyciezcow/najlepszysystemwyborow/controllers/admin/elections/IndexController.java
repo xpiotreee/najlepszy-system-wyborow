@@ -95,17 +95,16 @@ public class IndexController {
 
     private void handleView(Election election) {
         System.out.println("Podgląd wyborów: " + election.getTitle());
-        
     }
 
     private void handleEdit(Election election) {
         System.out.println("Edycja wyborów: " + election.getTitle());
-        
     }
 
     private void handleDelete(Election election) {
         System.out.println("Usuwanie wyborów: " + election.getTitle());
-        
+        this.electionService.getRepository().deleteById(election.getId());
+        loadElections();
     }
 
     private void loadElections() {
