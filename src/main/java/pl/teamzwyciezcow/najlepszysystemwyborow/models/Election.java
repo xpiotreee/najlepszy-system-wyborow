@@ -32,15 +32,8 @@ public class Election extends Model {
 
 
 
-        @NotNull
-
-
-
-        @OneToMany(mappedBy = "election", cascade = CascadeType.ALL)
-
-
-
-        List<Candidate> candidates;
+    @ManyToMany(mappedBy = "elections", cascade = CascadeType.ALL)
+    List<Candidate> candidates;
 
 
 

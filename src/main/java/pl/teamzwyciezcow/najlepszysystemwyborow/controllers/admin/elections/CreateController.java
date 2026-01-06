@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CreateController {
 
@@ -27,25 +28,52 @@ public class CreateController {
     @FXML private ComboBox<ResultVisibility> widocznoscCombo;
     @FXML private ComboBox<Candidate> kandydatSearchCombo;
     @FXML private VBox listaKandydatowBox;
+    @FXML private Label headerLabel;
+    @FXML private Button submitButton;
 
     
     private static class CandidateDTO {
+        Long id;
         String name;
         String description;
         
-        
-        CandidateDTO(String name, String description) {
+        CandidateDTO(Long id, String name, String description) {
+            this.id = id;
             this.name = name;
             this.description = description;
         }
     }
 
     private final List<CandidateDTO> candidatesToAdd = new ArrayList<>();
+    private Long currentElectionId = null;
 
     @FXML
     public void initialize() {
         setupVisibilityCombo();
         setupCandidateSearch();
+    }
+    
+    public void setElection(Election election) {
+        if (election == null) return;
+        
+        this.currentElectionId = election.getId();
+        headerLabel.setText("Edycja Głosowania");
+        submitButton.setText("ZAPISZ ZMIANY");
+
+        nazwaField.setText(election.getTitle());
+        opisArea.setText(election.getDescription());
+        dataOdPicker.setValue(election.getStartDate().toLocalDate());
+        dataDoPicker.setValue(election.getEndDate().toLocalDate());
+        widocznoscCombo.setValue(election.getResultVisibility());
+        
+        candidatesToAdd.clear();
+        listaKandydatowBox.getChildren().clear();
+        
+        if (election.getCandidates() != null) {
+            for (Candidate c : election.getCandidates()) {
+                addCandidateToList(new CandidateDTO(c.getId(), c.getName(), c.getDescription()), "Edytowany");
+            }
+        }
     }
 
     private void setupVisibilityCombo() {
@@ -98,7 +126,7 @@ public class CreateController {
             return;
         }
 
-        addCandidateToList(new CandidateDTO(nazwa, opis), "Nowy");
+        addCandidateToList(new CandidateDTO(null, nazwa, opis), "Nowy");
         
         nowyKandydatNazwa.clear();
         nowyKandydatOpis.clear();
@@ -108,8 +136,7 @@ public class CreateController {
     private void handleDodajKandydataZListy() {
         Candidate selected = kandydatSearchCombo.getValue();
         if (selected != null) {
-            
-            addCandidateToList(new CandidateDTO(selected.getName(), selected.getDescription()), "Z bazy");
+            addCandidateToList(new CandidateDTO(selected.getId(), selected.getName(), selected.getDescription()), "Z bazy");
             kandydatSearchCombo.getSelectionModel().clearSelection();
         }
     }
@@ -140,39 +167,114 @@ public class CreateController {
             String title = nazwaField.getText();
             String description = opisArea.getText();
             
-            
             java.time.LocalDateTime startDateTime = dataOdPicker.getValue().atStartOfDay();
             java.time.LocalDateTime endDateTime = dataDoPicker.getValue().atTime(LocalTime.MAX); 
             ResultVisibility visibility = widocznoscCombo.getValue();
-
             
-            
-            Election election = electionService.createElection(
-                    title, 
-                    description, 
-                    startDateTime, 
-                    endDateTime, 
-                    visibility, 
-                    new ArrayList<>() 
-            );
-
-            
-            for (CandidateDTO dto : candidatesToAdd) {
-                candidateService.createCandidate(
-                        election.getId(),
-                        dto.name,
-                        dto.description,
-                        null, 
-                        null  
+            if (currentElectionId == null) {
+                // CREATE
+                Election election = electionService.createElection(
+                        title, 
+                        description, 
+                        startDateTime, 
+                        endDateTime, 
+                        visibility, 
+                        new ArrayList<>() // We handle candidates manually below to mix new/existing
                 );
+    
+                for (CandidateDTO dto : candidatesToAdd) {
+                    if (dto.id != null) {
+                        // Existing candidate: Add this election to their list
+                        Candidate c = candidateService.getRepository().findById(dto.id).orElse(null);
+                        if (c != null) {
+                            if (c.getElections() == null) c.setElections(new ArrayList<>());
+                            c.getElections().add(election);
+                            candidateService.getRepository().save(c);
+                        }
+                    } else {
+                        // New candidate
+                        List<Long> electionIds = new ArrayList<>();
+                        electionIds.add(election.getId());
+                        candidateService.createCandidate(
+                                electionIds,
+                                dto.name,
+                                dto.description,
+                                null, 
+                                null  
+                        );
+                    }
+                }
+                showAlert("Sukces", "Wybory zostały utworzone pomyślnie!");
+                
+            } else {
+                // UPDATE
+                // We update basics first
+                electionService.updateElection(
+                        currentElectionId,
+                        title, 
+                        description, 
+                        startDateTime, 
+                        endDateTime, 
+                        visibility, 
+                        new ArrayList<>() // We handle candidates manually
+                );
+                
+                Election election = electionService.getRepository().findById(currentElectionId).orElseThrow();
+                List<Candidate> currentCandidates = election.getCandidates(); // Candidates currently having this election
+                if (currentCandidates == null) currentCandidates = new ArrayList<>();
+                
+                List<Long> targetCandidateIds = new ArrayList<>();
+                for(CandidateDTO dto : candidatesToAdd) {
+                    if(dto.id != null) targetCandidateIds.add(dto.id);
+                }
+
+                // Remove election from candidates removed from list
+                for (Candidate c : currentCandidates) {
+                    if (!targetCandidateIds.contains(c.getId())) {
+                        c.getElections().removeIf(e -> e.getId() == election.getId());
+                        candidateService.getRepository().save(c);
+                    }
+                }
+                
+                // Add election to candidates added to list
+                for (CandidateDTO dto : candidatesToAdd) {
+                    if (dto.id != null) {
+                        // Check if already has it
+                        boolean alreadyHas = currentCandidates.stream().anyMatch(c -> c.getId().equals(dto.id));
+                        if (!alreadyHas) {
+                            Candidate c = candidateService.getRepository().findById(dto.id).orElse(null);
+                            if (c != null) {
+                                if (c.getElections() == null) c.setElections(new ArrayList<>());
+                                // check again to be safe
+                                boolean present = c.getElections().stream().anyMatch(e -> e.getId() == election.getId());
+                                if (!present) {
+                                    c.getElections().add(election);
+                                    candidateService.getRepository().save(c);
+                                }
+                            }
+                        }
+                    } else {
+                         // New candidate
+                        List<Long> electionIds = new ArrayList<>();
+                        electionIds.add(election.getId());
+                        candidateService.createCandidate(
+                                electionIds,
+                                dto.name,
+                                dto.description,
+                                null, 
+                                null  
+                        );
+                    }
+                }
+                
+                showAlert("Sukces", "Wybory zostały zaktualizowane pomyślnie!");
             }
 
-            showAlert("Sukces", "Wybory zostały utworzone pomyślnie!");
             goBackToIndex();
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Błąd", "Wystąpił błąd podczas tworzenia wyborów: " + e.getMessage());
+            showAlert("Błąd", "Wystąpił błąd: " + e.getMessage());
         }
     }
     

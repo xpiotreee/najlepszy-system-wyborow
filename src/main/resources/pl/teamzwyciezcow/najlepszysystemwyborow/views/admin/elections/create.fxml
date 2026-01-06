@@ -19,7 +19,7 @@
 
 <ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.elections.CreateController">
     <VBox spacing="20" styleClass="main-container">
-        <Label styleClass="header-label" text="Nowe Głosowanie" />
+        <Label fx:id="headerLabel" styleClass="header-label" text="Nowe Głosowanie" />
 
         <GridPane hgap="15" vgap="15">
             <columnConstraints>
@@ -79,7 +79,7 @@
         <Label styleClass="section-label" text="Kandydaci" />
 
         <HBox spacing="10">
-            <ComboBox fx:id="kandydatSearchCombo" maxWidth="Infinity" promptText="Wyszukaj kandydata..." styleClass="blur_field" HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="kandydatSearchCombo" maxWidth="Infinity" promptText="Wyszukaj i dodaj istniejącego kandydata..." styleClass="blur_field" HBox.hgrow="ALWAYS" />
             <Button onAction="#handleDodajKandydataZListy" styleClass="button-secondary" text="Dodaj" />
         </HBox>
 
@@ -92,6 +92,6 @@
             <Button onAction="#handleUtworzKandydata" styleClass="button-primary" text="Utwórz i dodaj kandydata" />
         </VBox>
 
-        <Button maxWidth="Infinity" onAction="#handleZapiszFormularz" styleClass="button-submit" text="ZAPISZ FORMULARZ" />
+        <Button fx:id="submitButton" maxWidth="Infinity" onAction="#handleZapiszFormularz" styleClass="button-submit" text="ZAPISZ FORMULARZ" />
     </VBox>
 </ScrollPane>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.candidates.CreateController">
+    <VBox spacing="20" styleClass="main-container">
+        <Label fx:id="headerLabel" styleClass="header-label" text="Nowy Kandydat" />
+
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints minWidth="120.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <Label text="Nazwa (wymagane):" GridPane.rowIndex="0" />
+            <TextField fx:id="nameField" promptText="Maks. 255 znaków" styleClass="blur_field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Opis:" GridPane.rowIndex="1" />
+            <TextArea fx:id="descriptionArea" prefHeight="100" promptText="Maks. 2000 znaków" styleClass="blur_field" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Wybory:" GridPane.rowIndex="2" />
+            <ListView fx:id="electionListView" prefHeight="150" styleClass="blur_field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        </GridPane>
+
+        <Button fx:id="submitButton" maxWidth="Infinity" onAction="#handleSave" styleClass="button-submit" text="ZAPISZ KANDYDATA" />
+    </VBox>
+</ScrollPane>

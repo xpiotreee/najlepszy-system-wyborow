@@ -8,6 +8,7 @@
    <children>
       <Button mnemonicParsing="false" onAction="#handleShowAdminHome" text="Panel Admina" />
       <Button mnemonicParsing="false" onAction="#handleShowAdminElections" text="Zarządzaj Wyborami" />
+      <Button mnemonicParsing="false" onAction="#handleShowAdminCandidates" text="Zarządzaj Kandydatami" />
       <Region HBox.hgrow="ALWAYS" />
       <Button mnemonicParsing="false" onAction="#handleLogout" text="Wyloguj" />
    </children>

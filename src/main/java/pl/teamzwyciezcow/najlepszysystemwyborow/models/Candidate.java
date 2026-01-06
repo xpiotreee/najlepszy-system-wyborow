@@ -6,7 +6,8 @@ import io.ebean.annotation.NotNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 public class Candidate extends Model {
@@ -26,9 +27,8 @@ public class Candidate extends Model {
 
 
 
-    @NotNull
-    @ManyToOne
-    private Election election;
+    @ManyToMany
+    private List<Election> elections;
 
     public Long getId() {
         return id;
@@ -70,13 +70,11 @@ public class Candidate extends Model {
         this.externalLink = externalLink;
     }
 
-
-
-    public Election getElection() {
-        return election;
+    public List<Election> getElections() {
+        return elections;
     }
 
-    public void setElection(Election election) {
-        this.election = election;
+    public void setElections(List<Election> elections) {
+        this.elections = elections;
     }
 }

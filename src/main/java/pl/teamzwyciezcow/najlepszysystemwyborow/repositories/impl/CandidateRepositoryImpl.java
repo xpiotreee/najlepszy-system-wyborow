@@ -12,7 +12,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
     @Override
     public List<Candidate> findAll(String name) {
-        ExpressionList<Candidate> query = DB.find(Candidate.class).where();
+        ExpressionList<Candidate> query = DB.find(Candidate.class).fetch("elections").where();
         if (name != null && !name.isEmpty()) {
             query.icontains("name", name);
         }
@@ -21,7 +21,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
     @Override
     public Optional<Candidate> findById(Long id) {
-        return Optional.ofNullable(DB.find(Candidate.class, id));
+        return Optional.ofNullable(DB.find(Candidate.class).fetch("elections").where().idEq(id).findOne());
     }
 
     @Override

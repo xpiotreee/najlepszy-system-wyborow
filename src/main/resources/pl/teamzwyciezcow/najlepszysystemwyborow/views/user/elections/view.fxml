@@ -24,5 +24,10 @@
             <VBox fx:id="candidatesBox" spacing="10.0" style="-fx-padding: 10;" />
          </content>
       </javafx.scene.control.ScrollPane>
+      
+      <javafx.scene.layout.HBox alignment="CENTER" spacing="10">
+          <Label fx:id="statusLabel" textFill="red" />
+          <javafx.scene.control.Button fx:id="voteButton" text="ZAGŁOSUJ" styleClass="button-submit" onAction="#handleVote" visible="false" />
+      </javafx.scene.layout.HBox>
    </children>
 </VBox>

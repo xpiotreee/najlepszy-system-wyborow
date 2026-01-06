@@ -12,7 +12,7 @@ public class ElectionRepositoryImpl implements ElectionRepository {
 
     @Override
     public List<Election> findAll(String title) {
-        ExpressionList<Election> query = DB.find(Election.class).where();
+        ExpressionList<Election> query = DB.find(Election.class).fetch("candidates").where();
         if (title != null && !title.isEmpty()) {
             query.icontains("title", title);
         }
@@ -21,7 +21,7 @@ public class ElectionRepositoryImpl implements ElectionRepository {
 
     @Override
     public Optional<Election> findById(Long id) {
-        return Optional.ofNullable(DB.find(Election.class, id));
+        return Optional.ofNullable(DB.find(Election.class).fetch("candidates").where().idEq(id).findOne());
     }
 
     @Override

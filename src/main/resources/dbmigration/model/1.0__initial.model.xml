@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
     <changeSet type="apply">
+        <createTable name="admin" pkName="pk_admin">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="full_name" type="varchar(255)" notnull="true"/>
+            <column name="email" type="varchar" notnull="true"/>
+            <column name="password" type="varchar" notnull="true"/>
+        </createTable>
         <createTable name="candidate" pkName="pk_candidate">
             <column name="id" type="bigint" primaryKey="true"/>
             <column name="name" type="varchar(255)" notnull="true"/>
             <column name="description" type="TEXT"/>
             <column name="photo_url" type="varchar"/>
             <column name="external_link" type="varchar"/>
-            <column name="election_id" type="bigint" notnull="true" references="election.id" foreignKeyName="fk_candidate_election_id" foreignKeyIndex="ix_candidate_election_id"/>
+        </createTable>
+        <createTable name="candidate_election" pkName="pk_candidate_election">
+            <column name="candidate_id" type="bigint" notnull="true" primaryKey="true"/>
+            <column name="election_id" type="bigint" notnull="true" primaryKey="true"/>
+            <foreignKey name="fk_candidate_election_candidate" columnNames="candidate_id" refColumnNames="id" refTableName="candidate" indexName="ix_candidate_election_candidate"/>
+            <foreignKey name="fk_candidate_election_election" columnNames="election_id" refColumnNames="id" refTableName="election" indexName="ix_candidate_election_election"/>
         </createTable>
         <createTable name="election" pkName="pk_election">
             <column name="id" type="bigint" primaryKey="true"/>
@@ -23,6 +34,13 @@
             <column name="pesel" type="varchar(11)" notnull="true"/>
             <column name="email" type="varchar" notnull="true"/>
             <column name="password" type="varchar" notnull="true"/>
+        </createTable>
+        <createTable name="vote" pkName="pk_vote">
+            <column name="id" type="bigint" primaryKey="true"/>
+            <column name="user_id" type="bigint" notnull="true" references="user.id" foreignKeyName="fk_vote_user_id" foreignKeyIndex="ix_vote_user_id"/>
+            <column name="election_id" type="bigint" notnull="true" references="election.id" foreignKeyName="fk_vote_election_id" foreignKeyIndex="ix_vote_election_id"/>
+            <column name="candidate_id" type="bigint" notnull="true" references="candidate.id" foreignKeyName="fk_vote_candidate_id" foreignKeyIndex="ix_vote_candidate_id"/>
+            <uniqueConstraint name="uq_vote_user_id_election_id" columnNames="user_id,election_id" oneToOne="false" nullableColumns=""/>
         </createTable>
     </changeSet>
 </migration>

@@ -11,9 +11,13 @@
 <?import javafx.scene.text.Text?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.user.auth.LoginController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
    </left>
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
@@ -35,7 +39,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="32.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField promptText="Email" styleClass="blur_field">
+            <TextField fx:id="emailField" promptText="Email" styleClass="blur_field">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -46,7 +50,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </TextField>
-            <PasswordField promptText="Hasło" styleClass="blur_field">
+            <PasswordField fx:id="passwordField" promptText="Hasło" styleClass="blur_field">
                <VBox.margin>
                   <Insets left="64.0" right="64.0" />
                </VBox.margin>
@@ -54,9 +58,10 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </PasswordField>
-            <HBox alignment="TOP_RIGHT" prefHeight="88.0" prefWidth="400.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="88.0" prefWidth="400.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="guzik" text="Zaloguj">
+                  <Button mnemonicParsing="false" onAction="#handleRegister" styleClass="guzik" text="Rejestracja" />
+                  <Button mnemonicParsing="false" onAction="#handleLogin" styleClass="guzik" text="Zaloguj">
                      <HBox.margin>
                         <Insets right="64.0" />
                      </HBox.margin>
@@ -65,6 +70,9 @@
                      </padding>
                   </Button>
                </children>
+               <padding>
+                   <Insets right="0" />
+               </padding>
             </HBox>
          </children>
          <padding>

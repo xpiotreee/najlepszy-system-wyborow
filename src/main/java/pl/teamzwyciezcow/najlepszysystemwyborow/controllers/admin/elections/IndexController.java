@@ -94,11 +94,17 @@ public class IndexController {
     }
 
     private void handleView(Election election) {
-        System.out.println("Podgląd wyborów: " + election.getTitle());
+        ViewController controller = (ViewController) AppProvider.getInstance().getMainController().loadViewWithController("admin/elections/view");
+        if (controller != null) {
+            controller.setElection(election);
+        }
     }
 
     private void handleEdit(Election election) {
-        System.out.println("Edycja wyborów: " + election.getTitle());
+        CreateController controller = (CreateController) AppProvider.getInstance().getMainController().loadViewWithController("admin/elections/create");
+        if (controller != null) {
+            controller.setElection(election);
+        }
     }
 
     private void handleDelete(Election election) {

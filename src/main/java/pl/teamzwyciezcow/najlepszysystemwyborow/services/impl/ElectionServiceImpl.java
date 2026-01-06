@@ -8,6 +8,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.ElectionRepository;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.ElectionService;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,18 +28,24 @@ public class ElectionServiceImpl implements ElectionService {
         election.setStartDate(from);
         election.setEndDate(to);
         election.setResultVisibility(resultVisibility);
+        
+        // Save first to get ID
+        electionRepository.save(election);
 
-        List<Candidate> candidates = candidateIds.stream().map(id -> {
-            Candidate candidate = DB.find(Candidate.class, id);
-            if (candidate == null) {
-                throw new RuntimeException("Candidate not found with id: " + id);
+        if (candidateIds != null && !candidateIds.isEmpty()) {
+            List<Candidate> candidates = DB.find(Candidate.class).where().idIn(candidateIds).findList();
+            for (Candidate candidate : candidates) {
+                if (candidate.getElections() == null) {
+                    candidate.setElections(new ArrayList<>());
+                }
+                candidate.getElections().add(election);
+                DB.save(candidate);
             }
-            candidate.setElection(election);
-            return candidate;
-        }).collect(Collectors.toList());
-        election.setCandidates(candidates);
+            // Refresh to get updated list if needed, or set manually
+            election.setCandidates(candidates);
+        }
 
-        return electionRepository.save(election);
+        return election;
     }
 
     @Override
@@ -49,18 +56,40 @@ public class ElectionServiceImpl implements ElectionService {
         election.setStartDate(from);
         election.setEndDate(to);
         election.setResultVisibility(resultVisibility);
+        electionRepository.save(election);
 
-        List<Candidate> candidates = candidateIds.stream().map(id -> {
-            Candidate candidate = DB.find(Candidate.class, id);
-            if (candidate == null) {
-                throw new RuntimeException("Candidate not found with id: " + id);
+        if (candidateIds != null) { // If null, we might ignore updates to candidates? Or treat as empty? Let's assume explicit list means "set to this".
+            // Fetch all candidates currently linked to this election
+            List<Candidate> currentCandidates = election.getCandidates();
+            if (currentCandidates == null) currentCandidates = new ArrayList<>();
+            
+            // Remove election from those not in new list
+            for (Candidate c : currentCandidates) {
+                if (!candidateIds.contains(c.getId())) {
+                    c.getElections().removeIf(e -> e.getId() == electionId);
+                    DB.save(c);
+                }
             }
-            candidate.setElection(election);
-            return candidate;
-        }).collect(Collectors.toList());
-        election.setCandidates(candidates);
+            
+            // Add election to those in new list
+            List<Candidate> newCandidates = DB.find(Candidate.class).where().idIn(candidateIds).findList();
+            for (Candidate c : newCandidates) {
+                boolean hasElection = false;
+                if (c.getElections() != null) {
+                    hasElection = c.getElections().stream().anyMatch(e -> e.getId() == electionId);
+                } else {
+                    c.setElections(new ArrayList<>());
+                }
+                
+                if (!hasElection) {
+                    c.getElections().add(election);
+                    DB.save(c);
+                }
+            }
+            election.setCandidates(newCandidates);
+        }
         
-        return electionRepository.save(election);
+        return election;
     }
 
     @Override

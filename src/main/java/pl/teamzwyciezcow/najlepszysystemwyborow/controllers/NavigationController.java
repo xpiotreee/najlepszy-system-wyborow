@@ -5,4 +5,5 @@ public interface NavigationController {
     public Object loadViewWithController(String view);
     public void showAdminMenu();
     public void showDefaultMenu();
+    public void refreshMenu();
 }

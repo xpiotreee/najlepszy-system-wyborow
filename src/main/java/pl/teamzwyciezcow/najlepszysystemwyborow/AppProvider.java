@@ -5,14 +5,17 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.AdminRepositor
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.CandidateRepositoryImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.ElectionRepositoryImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.UserRepositoryImpl;
+import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.impl.VoteRepositoryImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.AdminService;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.CandidateService;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.ElectionService;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.UserService;
+import pl.teamzwyciezcow.najlepszysystemwyborow.services.VoteService;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.impl.AdminServiceImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.impl.CandidateServiceImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.impl.ElectionServiceImpl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.impl.UserServiceImpl;
+import pl.teamzwyciezcow.najlepszysystemwyborow.services.impl.VoteServiceImpl;
 
 public class AppProvider {
     private static AppProvider instance;
@@ -21,12 +24,14 @@ public class AppProvider {
     private UserService userService;
     private ElectionService electionService;
     private CandidateService candidateService;
+    private VoteService voteService;
 
     private AppProvider() {
         this.adminService = new AdminServiceImpl(new AdminRepositoryImpl());
         this.userService = new UserServiceImpl(new UserRepositoryImpl());
         this.electionService = new ElectionServiceImpl(new ElectionRepositoryImpl());
         this.candidateService = new CandidateServiceImpl(new CandidateRepositoryImpl());
+        this.voteService = new VoteServiceImpl(new VoteRepositoryImpl());
     }
 
     public static AppProvider getInstance() {
@@ -75,5 +80,13 @@ public class AppProvider {
 
     public void setCandidateService(CandidateService candidateService) {
         this.candidateService = candidateService;
+    }
+
+    public VoteService getVoteService() {
+        return voteService;
+    }
+
+    public void setVoteService(VoteService voteService) {
+        this.voteService = voteService;
     }
 }

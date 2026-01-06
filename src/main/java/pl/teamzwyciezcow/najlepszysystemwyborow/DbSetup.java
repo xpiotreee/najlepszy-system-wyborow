@@ -35,6 +35,7 @@ public class DbSetup {
                 .getRepository()
                 .findAll(testUsername, null)
                 .isEmpty();
+        System.out.println("DB init check " + isEmpty);
         if (!isEmpty) {
             System.out.println("Test user found skipping Db init.");
             return;
@@ -69,10 +70,6 @@ public class DbSetup {
                 List.of()
         );
 
-        candidateService.createCandidate(election1.getId(), "Jan Kowalski", "Niezależny kandydat", null, null);
-        candidateService.createCandidate(election1.getId(), "Anna Nowak", "Kandydatka partii Zmian", null, null);
-
-
         Election election2 = electionService.createElection(
                 "Wybory Samorządowe 2024",
                 "Wybory do władz samorządowych",
@@ -81,10 +78,6 @@ public class DbSetup {
                 ResultVisibility.AFTER_CLOSE,
                 List.of()
         );
-
-        candidateService.createCandidate(election2.getId(), "Anna Nowak", "Kandydatka partii Zmian", null, null);
-        candidateService.createCandidate(election2.getId(), "Piotr Zieliński", "Aktywista społeczny", null, null);
-
 
         Election election3 = electionService.createElection(
                 "Wybory do Parlamentu Europejskiego 2025",
@@ -95,7 +88,29 @@ public class DbSetup {
                 List.of()
         );
 
-        candidateService.createCandidate(election3.getId(), "Jan Kowalski", "Niezależny kandydat", null, null);
-        candidateService.createCandidate(election3.getId(), "Piotr Zieliński", "Aktywista społeczny", null, null);
+        // Candidates assigned to multiple elections
+        candidateService.createCandidate(
+                List.of(election1.getId(), election3.getId()), 
+                "Jan Kowalski", 
+                "Niezależny kandydat", 
+                null, 
+                null
+        );
+        
+        candidateService.createCandidate(
+                List.of(election1.getId(), election2.getId()), 
+                "Anna Nowak", 
+                "Kandydatka partii Zmian", 
+                null, 
+                null
+        );
+        
+        candidateService.createCandidate(
+                List.of(election2.getId(), election3.getId()), 
+                "Piotr Zieliński", 
+                "Aktywista społeczny", 
+                null, 
+                null
+        );
     }
 }

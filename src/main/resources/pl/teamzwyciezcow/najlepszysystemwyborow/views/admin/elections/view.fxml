@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.elections.ViewController">
+    <VBox spacing="20" styleClass="main-container">
+        <Label styleClass="header-label" text="Szczegóły Wyborów" />
+
+        <GridPane hgap="15" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints minWidth="120.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <Label styleClass="label-bold" text="Nazwa:" GridPane.rowIndex="0" />
+            <Label fx:id="titleLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label styleClass="label-bold" text="Opis:" GridPane.rowIndex="1" />
+            <Label fx:id="descriptionLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label styleClass="label-bold" text="Od kiedy:" GridPane.rowIndex="2" />
+            <Label fx:id="startDateLabel" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label styleClass="label-bold" text="Do kiedy:" GridPane.rowIndex="3" />
+            <Label fx:id="endDateLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <Label styleClass="label-bold" text="Widoczność głosów:" GridPane.rowIndex="4" />
+            <Label fx:id="visibilityLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        </GridPane>
+
+        <Separator />
+
+        <Label styleClass="section-label" text="Kandydaci" />
+
+        <VBox fx:id="candidatesBox" spacing="10" />
+
+        <Button maxWidth="Infinity" onAction="#handleBack" styleClass="button-secondary" text="Powrót do listy" />
+    </VBox>
+</ScrollPane>

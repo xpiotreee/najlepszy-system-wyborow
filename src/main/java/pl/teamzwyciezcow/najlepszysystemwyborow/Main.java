@@ -19,10 +19,10 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/admin/elections/index.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/main.fxml"));
         Parent root = loader.load();
-//        NavigationController mainController = loader.getController();
-//        AppProvider.getInstance().setMainController(mainController);
+        NavigationController mainController = loader.getController();
+        AppProvider.getInstance().setMainController(mainController);
 
         Scene scene = new Scene(root, 600, 400);
         String css = Objects.requireNonNull(this.getClass().getResource("main.css")).toExternalForm();
