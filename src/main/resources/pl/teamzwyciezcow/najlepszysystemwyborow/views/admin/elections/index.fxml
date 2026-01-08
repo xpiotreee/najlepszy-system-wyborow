@@ -36,6 +36,7 @@
                 <TableColumn fx:id="titleColumn" prefWidth="150.0" text="Tytuł wyborów" />
                 <TableColumn fx:id="startDateColumn" prefWidth="120.0" text="Data rozpoczęcia" />
                 <TableColumn fx:id="endDateColumn" prefWidth="120.0" text="Data zakończenia" />
+                <TableColumn fx:id="votesColumn" prefWidth="100.0" text="Liczba głosów" />
                 <TableColumn fx:id="actionColumn" prefWidth="200.0" text="Akcje" />
             </columns>
             <columnResizePolicy>

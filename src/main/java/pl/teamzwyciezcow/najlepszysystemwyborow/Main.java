@@ -26,7 +26,8 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 600, 400);
         String css = Objects.requireNonNull(this.getClass().getResource("main.css")).toExternalForm();
-        scene.getStylesheets().add(css);
+        String homeCss = Objects.requireNonNull(this.getClass().getResource("home.css")).toExternalForm();
+        scene.getStylesheets().addAll(css, homeCss);
 
         stage.setTitle("Najlepszy system wyborów");
         stage.setScene(scene);

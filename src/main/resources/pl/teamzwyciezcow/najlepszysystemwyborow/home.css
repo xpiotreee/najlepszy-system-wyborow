@@ -1,0 +1,103 @@
+.root {
+    -fx-background-color: #f4f4f4;
+}
+
+.navbar {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 2);
+}
+
+.navbar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 2px 0;
+    -fx-padding: 8 15 8 15;
+}
+
+.navbar-button:hover {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-border-color: #3498db;
+}
+
+.navbar-menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.navbar-menu-button > .label {
+    -fx-text-fill: white;
+}
+
+.navbar-menu-button:hover {
+    -fx-background-color: rgba(255,255,255,0.1);
+}
+
+.hero-section {
+    -fx-background-color: linear-gradient(to bottom right, #2980b9, #2c3e50);
+    -fx-padding: 60px;
+    -fx-alignment: center;
+}
+
+.hero-title {
+    -fx-font-size: 48px;
+    -fx-font-weight: bold;
+    -fx-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 2);
+}
+
+.hero-subtitle {
+    -fx-font-size: 24px;
+    -fx-fill: #ecf0f1;
+    -fx-padding: 10 0 20 0;
+}
+
+.action-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 30 12 30;
+    -fx-background-radius: 30;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.action-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+.features-section {
+    -fx-padding: 40px;
+    -fx-alignment: center;
+    -fx-spacing: 30px;
+}
+
+.feature-card {
+    -fx-background-color: white;
+    -fx-padding: 20px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-min-width: 250px;
+    -fx-alignment: center;
+}
+
+.feature-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.feature-description {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}

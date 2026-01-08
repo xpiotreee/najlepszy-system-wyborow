@@ -31,7 +31,10 @@ create table election (
   start_date                    timestamp not null,
   end_date                      timestamp not null,
   result_visibility             varchar(11) not null,
+  election_type                 varchar(15) not null,
+  max_choices                   integer,
   constraint ck_election_result_visibility check ( result_visibility in ('ALWAYS','AFTER_VOTE','AFTER_CLOSE')),
+  constraint ck_election_election_type check ( election_type in ('SINGLE_CHOICE','MULTIPLE_CHOICE')),
   constraint pk_election primary key (id)
 );
 
@@ -49,7 +52,7 @@ create table vote (
   user_id                       integer not null,
   election_id                   integer not null,
   candidate_id                  integer not null,
-  constraint uq_vote_user_id_election_id unique (user_id,election_id),
+  constraint uq_vote_user_id_election_id_candidate_id unique (user_id,election_id,candidate_id),
   constraint pk_vote primary key (id),
   foreign key (user_id) references user (id) on delete restrict on update restrict,
   foreign key (election_id) references election (id) on delete restrict on update restrict,

@@ -62,6 +62,12 @@
                     </FXCollections>
                 </items>
             </ComboBox>
+
+            <Label text="Typ wyborów:" GridPane.rowIndex="5" />
+            <ComboBox fx:id="typeCombo" maxWidth="Infinity" styleClass="blur_field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+            <Label text="Max wyborów (dla wielokrotnego):" GridPane.rowIndex="6" />
+            <TextField fx:id="maxChoicesField" styleClass="blur_field" text="1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          <rowConstraints>
             <RowConstraints />
             <RowConstraints />

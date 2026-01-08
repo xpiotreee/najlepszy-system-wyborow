@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "election_id"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "election_id", "candidate_id"}))
 public class Vote extends Model {
     @Id
     private Long id;

@@ -6,6 +6,7 @@ import javafx.scene.layout.VBox;
 import pl.teamzwyciezcow.najlepszysystemwyborow.AppProvider;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Candidate;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
+import pl.teamzwyciezcow.najlepszysystemwyborow.services.VoteService;
 
 import java.time.format.DateTimeFormatter;
 
@@ -29,15 +30,18 @@ public class ViewController {
         endDateLabel.setText(election.getEndDate().format(formatter));
         visibilityLabel.setText(election.getResultVisibility().name()); // Could be improved with translation
 
+        VoteService voteService = AppProvider.getInstance().getVoteService();
+
         candidatesBox.getChildren().clear();
         if (election.getCandidates() != null) {
             for (Candidate candidate : election.getCandidates()) {
+                int votes = voteService.getCandidateVoteCount(candidate.getId(), election.getId());
+                
                 VBox card = new VBox(5);
-                card.getStyleClass().add("candidate-card"); // Assume this style exists or just standard box
-                // Add simple styling if class doesn't exist
+                card.getStyleClass().add("candidate-card"); 
                 card.setStyle("-fx-border-color: #ccc; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: rgba(255,255,255,0.1);");
 
-                Label name = new Label(candidate.getName());
+                Label name = new Label(candidate.getName() + " - Głosów: " + votes);
                 name.setStyle("-fx-font-weight: bold; -fx-font-size: 1.1em;");
                 
                 Label desc = new Label(candidate.getDescription());

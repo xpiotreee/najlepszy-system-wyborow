@@ -10,12 +10,12 @@
 
 <BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.MainController">
    <top>
-      <HBox fx:id="topMenuBox" alignment="CENTER_LEFT" prefHeight="100.0" style="-fx-spacing: 4;" BorderPane.alignment="CENTER">
+      <HBox fx:id="topMenuBox" alignment="CENTER_LEFT" prefHeight="60.0" styleClass="navbar" BorderPane.alignment="CENTER">
          <children>
-            <Button id="nav-homepage" mnemonicParsing="false" onAction="#handleShowHomepage" text="Strona główna" />
-            <Button id="nav-elections" mnemonicParsing="false" onAction="#handleShowElections" text="Wybory" />
+            <Button id="nav-homepage" mnemonicParsing="false" onAction="#handleShowHomepage" styleClass="navbar-button" text="Strona główna" />
+            <Button id="nav-elections" mnemonicParsing="false" onAction="#handleShowElections" styleClass="navbar-button" text="Wybory" />
             <Region HBox.hgrow="ALWAYS" />
-            <MenuButton fx:id="userMenuButton" mnemonicParsing="false" text="Login">
+            <MenuButton fx:id="userMenuButton" mnemonicParsing="false" styleClass="navbar-menu-button" text="Login">
               <items>
                 <MenuItem id="nav-admin" mnemonicParsing="false" onAction="#handleShowAdmin" text="Admin" />
                 <MenuItem id="nav-user" mnemonicParsing="false" onAction="#handleShowUser" text="User" />

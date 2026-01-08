@@ -17,6 +17,10 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.services.ElectionService;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import pl.teamzwyciezcow.najlepszysystemwyborow.models.ResultVisibility;
+import pl.teamzwyciezcow.najlepszysystemwyborow.models.User;
+import pl.teamzwyciezcow.najlepszysystemwyborow.services.VoteService;
+
 public class IndexController {
 
     @FXML
@@ -38,9 +42,11 @@ public class IndexController {
     private TableColumn<Election, Void> actionColumn;
 
     private final ElectionService electionService;
+    private final VoteService voteService;
 
     public IndexController() {
         this.electionService = AppProvider.getInstance().getElectionService();
+        this.voteService = AppProvider.getInstance().getVoteService();
     }
 
     @FXML
@@ -48,7 +54,27 @@ public class IndexController {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
-        votesColumn.setCellValueFactory(cellData -> new SimpleStringProperty("0"));
+        
+        votesColumn.setCellValueFactory(cellData -> {
+            Election election = cellData.getValue();
+            boolean show = false;
+            
+            if (election.getResultVisibility() == ResultVisibility.ALWAYS) {
+                show = true;
+            } else if (election.getResultVisibility() == ResultVisibility.AFTER_CLOSE) {
+                if (LocalDateTime.now().isAfter(election.getEndDate())) show = true;
+            } else if (election.getResultVisibility() == ResultVisibility.AFTER_VOTE) {
+                 User user = AppProvider.getInstance().getUserService().getLoggedIn();
+                 if (user != null && voteService.hasVoted(user, election)) show = true;
+            }
+            
+            if (show) {
+                int count = voteService.getVoteCount(election.getId());
+                return new SimpleStringProperty(String.valueOf(count));
+            } else {
+                return new SimpleStringProperty("-");
+            }
+        });
 
         setupActionColumn();
         loadElections();

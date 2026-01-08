@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election.ElectionType;
+
 public class ElectionServiceImpl implements ElectionService {
 
     private final ElectionRepository electionRepository;
@@ -21,13 +23,15 @@ public class ElectionServiceImpl implements ElectionService {
     }
 
     @Override
-    public Election createElection(String name, String description, LocalDateTime from, LocalDateTime to, ResultVisibility resultVisibility, List<Long> candidateIds) {
+    public Election createElection(String name, String description, LocalDateTime from, LocalDateTime to, ResultVisibility resultVisibility, ElectionType electionType, Integer maxChoices, List<Long> candidateIds) {
         Election election = new Election();
         election.setTitle(name);
         election.setDescription(description);
         election.setStartDate(from);
         election.setEndDate(to);
         election.setResultVisibility(resultVisibility);
+        election.setElectionType(electionType);
+        election.setMaxChoices(maxChoices);
         
         // Save first to get ID
         electionRepository.save(election);
@@ -49,16 +53,18 @@ public class ElectionServiceImpl implements ElectionService {
     }
 
     @Override
-    public Election updateElection(Long electionId, String name, String description, LocalDateTime from, LocalDateTime to, ResultVisibility resultVisibility, List<Long> candidateIds) {
+    public Election updateElection(Long electionId, String name, String description, LocalDateTime from, LocalDateTime to, ResultVisibility resultVisibility, ElectionType electionType, Integer maxChoices, List<Long> candidateIds) {
         Election election = electionRepository.findById(electionId).orElseThrow(() -> new RuntimeException("Election not found"));
         election.setTitle(name);
         election.setDescription(description);
         election.setStartDate(from);
         election.setEndDate(to);
         election.setResultVisibility(resultVisibility);
+        election.setElectionType(electionType);
+        election.setMaxChoices(maxChoices);
         electionRepository.save(election);
 
-        if (candidateIds != null) { // If null, we might ignore updates to candidates? Or treat as empty? Let's assume explicit list means "set to this".
+        if (candidateIds != null) { 
             // Fetch all candidates currently linked to this election
             List<Candidate> currentCandidates = election.getCandidates();
             if (currentCandidates == null) currentCandidates = new ArrayList<>();

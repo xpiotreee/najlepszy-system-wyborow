@@ -3,6 +3,7 @@ package pl.teamzwyciezcow.najlepszysystemwyborow;
 import io.ebean.dbmigration.DbMigration;
 import io.ebean.platform.sqlite.SQLitePlatform;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
+import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election.ElectionType;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.ResultVisibility;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.CandidateService;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.ElectionService;
@@ -67,6 +68,8 @@ public class DbSetup {
                 LocalDateTime.of(2023, 10, 1, 9, 0),
                 LocalDateTime.of(2023, 10, 15, 20, 0),
                 ResultVisibility.ALWAYS,
+                ElectionType.SINGLE_CHOICE,
+                1,
                 List.of()
         );
 
@@ -76,6 +79,8 @@ public class DbSetup {
                 LocalDateTime.now().minusDays(5),
                 LocalDateTime.now().plusDays(5),
                 ResultVisibility.AFTER_CLOSE,
+                ElectionType.MULTIPLE_CHOICE,
+                2,
                 List.of()
         );
 
@@ -85,6 +90,8 @@ public class DbSetup {
                 LocalDateTime.of(2025, 5, 1, 8, 0),
                 LocalDateTime.of(2025, 5, 10, 22, 0),
                 ResultVisibility.AFTER_VOTE,
+                ElectionType.MULTIPLE_CHOICE,
+                3,
                 List.of()
         );
 

@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="100.0" style="-fx-spacing: 4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.MenuController">
+<HBox alignment="CENTER_LEFT" prefHeight="60.0" style="-fx-spacing: 4;" styleClass="navbar" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.MenuController">
    <children>
-      <Button mnemonicParsing="false" onAction="#handleShowAdminHome" text="Panel Admina" />
-      <Button mnemonicParsing="false" onAction="#handleShowAdminElections" text="Zarządzaj Wyborami" />
-      <Button mnemonicParsing="false" onAction="#handleShowAdminCandidates" text="Zarządzaj Kandydatami" />
+      <Button mnemonicParsing="false" onAction="#handleShowAdminHome" styleClass="navbar-button" text="Panel Admina" />
+      <Button mnemonicParsing="false" onAction="#handleShowAdminElections" styleClass="navbar-button" text="Zarządzaj Wyborami" />
+      <Button mnemonicParsing="false" onAction="#handleShowAdminCandidates" styleClass="navbar-button" text="Zarządzaj Kandydatami" />
       <Region HBox.hgrow="ALWAYS" />
-      <Button mnemonicParsing="false" onAction="#handleLogout" text="Wyloguj" />
+      <Button mnemonicParsing="false" onAction="#handleLogout" styleClass="navbar-button" text="Wyloguj" />
    </children>
 </HBox>

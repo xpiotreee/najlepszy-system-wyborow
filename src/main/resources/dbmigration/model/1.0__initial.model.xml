@@ -27,6 +27,8 @@
             <column name="start_date" type="localdatetime" notnull="true"/>
             <column name="end_date" type="localdatetime" notnull="true"/>
             <column name="result_visibility" type="varchar(11)" notnull="true" checkConstraint="check ( result_visibility in ('ALWAYS','AFTER_VOTE','AFTER_CLOSE'))" checkConstraintName="ck_election_result_visibility"/>
+            <column name="election_type" type="varchar(15)" notnull="true" checkConstraint="check ( election_type in ('SINGLE_CHOICE','MULTIPLE_CHOICE'))" checkConstraintName="ck_election_election_type"/>
+            <column name="max_choices" type="integer"/>
         </createTable>
         <createTable name="user" pkName="pk_user">
             <column name="id" type="bigint" primaryKey="true"/>
@@ -40,7 +42,7 @@
             <column name="user_id" type="bigint" notnull="true" references="user.id" foreignKeyName="fk_vote_user_id" foreignKeyIndex="ix_vote_user_id"/>
             <column name="election_id" type="bigint" notnull="true" references="election.id" foreignKeyName="fk_vote_election_id" foreignKeyIndex="ix_vote_election_id"/>
             <column name="candidate_id" type="bigint" notnull="true" references="candidate.id" foreignKeyName="fk_vote_candidate_id" foreignKeyIndex="ix_vote_candidate_id"/>
-            <uniqueConstraint name="uq_vote_user_id_election_id" columnNames="user_id,election_id" oneToOne="false" nullableColumns=""/>
+            <uniqueConstraint name="uq_vote_user_id_election_id_candidate_id" columnNames="user_id,election_id,candidate_id" oneToOne="false" nullableColumns=""/>
         </createTable>
     </changeSet>
 </migration>

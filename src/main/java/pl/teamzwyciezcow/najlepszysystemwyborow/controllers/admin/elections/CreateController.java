@@ -22,10 +22,11 @@ import java.util.stream.Collectors;
 
 public class CreateController {
 
-    @FXML private TextField nazwaField, nowyKandydatNazwa, nowyKandydatOpis;
+    @FXML private TextField nazwaField, nowyKandydatNazwa, nowyKandydatOpis, maxChoicesField;
     @FXML private TextArea opisArea;
     @FXML private DatePicker dataOdPicker, dataDoPicker;
     @FXML private ComboBox<ResultVisibility> widocznoscCombo;
+    @FXML private ComboBox<Election.ElectionType> typeCombo;
     @FXML private ComboBox<Candidate> kandydatSearchCombo;
     @FXML private VBox listaKandydatowBox;
     @FXML private Label headerLabel;
@@ -50,6 +51,7 @@ public class CreateController {
     @FXML
     public void initialize() {
         setupVisibilityCombo();
+        setupTypeCombo();
         setupCandidateSearch();
     }
     
@@ -65,6 +67,10 @@ public class CreateController {
         dataOdPicker.setValue(election.getStartDate().toLocalDate());
         dataDoPicker.setValue(election.getEndDate().toLocalDate());
         widocznoscCombo.setValue(election.getResultVisibility());
+        typeCombo.setValue(election.getElectionType());
+        if (election.getMaxChoices() != null) {
+            maxChoicesField.setText(election.getMaxChoices().toString());
+        }
         
         candidatesToAdd.clear();
         listaKandydatowBox.getChildren().clear();
@@ -96,6 +102,21 @@ public class CreateController {
             }
         });
         widocznoscCombo.getSelectionModel().selectFirst();
+    }
+
+    private void setupTypeCombo() {
+        typeCombo.setItems(FXCollections.observableArrayList(Election.ElectionType.values()));
+        typeCombo.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            if (newValue == Election.ElectionType.MULTIPLE_CHOICE) {
+                maxChoicesField.setDisable(false);
+            } else {
+                maxChoicesField.setDisable(true);
+                maxChoicesField.setText("1");
+            }
+        });
+        typeCombo.getSelectionModel().select(Election.ElectionType.SINGLE_CHOICE);
+        maxChoicesField.setDisable(true);
+        maxChoicesField.setText("1");
     }
 
     private void setupCandidateSearch() {
@@ -170,6 +191,14 @@ public class CreateController {
             java.time.LocalDateTime startDateTime = dataOdPicker.getValue().atStartOfDay();
             java.time.LocalDateTime endDateTime = dataDoPicker.getValue().atTime(LocalTime.MAX); 
             ResultVisibility visibility = widocznoscCombo.getValue();
+            Election.ElectionType type = typeCombo.getValue();
+            Integer maxChoices = 1;
+            try {
+                maxChoices = Integer.parseInt(maxChoicesField.getText());
+            } catch (NumberFormatException e) {
+                // Should use 1 or validate
+                maxChoices = 1;
+            }
             
             if (currentElectionId == null) {
                 // CREATE
@@ -179,6 +208,8 @@ public class CreateController {
                         startDateTime, 
                         endDateTime, 
                         visibility, 
+                        type,
+                        maxChoices,
                         new ArrayList<>() // We handle candidates manually below to mix new/existing
                 );
     
@@ -216,6 +247,8 @@ public class CreateController {
                         startDateTime, 
                         endDateTime, 
                         visibility, 
+                        type,
+                        maxChoices,
                         new ArrayList<>() // We handle candidates manually
                 );
                 

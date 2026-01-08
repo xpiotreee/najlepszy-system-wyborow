@@ -27,4 +27,27 @@ public class VoteRepositoryImpl implements VoteRepository {
                 .eq("election.id", electionId)
                 .exists();
     }
+
+    @Override
+    public List<Vote> findUserVotes(Long userId, Long electionId) {
+        return DB.find(Vote.class)
+                .where()
+                .eq("user.id", userId)
+                .eq("election.id", electionId)
+                .findList();
+    }
+
+    @Override
+    public int countByElectionId(Long electionId) {
+        return DB.find(Vote.class).where().eq("election.id", electionId).findCount();
+    }
+
+    @Override
+    public int countByCandidateId(Long candidateId, Long electionId) {
+        return DB.find(Vote.class)
+                .where()
+                .eq("candidate.id", candidateId)
+                .eq("election.id", electionId)
+                .findCount();
+    }
 }
