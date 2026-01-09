@@ -9,37 +9,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundlis" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.candidates.IndexController">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.candidates.IndexController">
     <top>
-        <VBox alignment="CENTER" spacing="10">
-            <children>
-                <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zarządzanie Kandydatami" textAlignment="CENTER">
-                            <font>
-                                <Font name="System Bold" size="36.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </HBox>
-                <HBox alignment="CENTER_RIGHT" prefWidth="200.0" style="-fx-padding: 0 20 10 0;">
-                    <children>
-                        <Button mnemonicParsing="false" onAction="#handleCreateCandidate" styleClass="guzikl" text="Dodaj nowego kandydata" />
-                    </children>
-                </HBox>
-            </children>
+        <VBox spacing="0" maxWidth="Infinity">
+            <VBox styleClass="small-hero-section" alignment="CENTER" maxWidth="Infinity">
+                <Text styleClass="hero-title" text="Zarządzanie Kandydatami" />
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" style="-fx-padding: 20 20 10 20;">
+                <children>
+                    <Button mnemonicParsing="false" onAction="#handleCreateCandidate" styleClass="guzikl" text="Dodaj nowego kandydata" />
+                </children>
+            </HBox>
         </VBox>
     </top>
     <center>
-        <TableView fx:id="candidateTable" prefHeight="200.0" prefWidth="200.0" styleClass="tabelkal" BorderPane.alignment="CENTER">
-            <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Nazwa kandydata" />
-                <TableColumn fx:id="electionColumn" prefWidth="200.0" text="Przypisane Wybory" />
-                <TableColumn fx:id="actionColumn" prefWidth="150.0" text="Akcje" />
-            </columns>
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-        </TableView>
+        <VBox alignment="TOP_CENTER" maxWidth="Infinity" maxHeight="Infinity">
+            <VBox styleClass="content-container" alignment="TOP_CENTER" maxWidth="Infinity" maxHeight="Infinity" VBox.vgrow="ALWAYS">
+                <TableView fx:id="candidateTable" prefHeight="200.0" prefWidth="200.0" styleClass="tabelkal" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Nazwa kandydata" />
+                        <TableColumn fx:id="electionColumn" prefWidth="200.0" text="Przypisane Wybory" />
+                        <TableColumn fx:id="actionColumn" prefWidth="150.0" text="Akcje" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </VBox>
+        </VBox>
     </center>
 </BorderPane>

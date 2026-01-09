@@ -1,103 +1,97 @@
-.root {
-    -fx-background-color: #f4f4f4;
-}
-
-.navbar {
-    -fx-background-color: #2c3e50;
-    -fx-padding: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 2);
-}
-
-.navbar-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-    -fx-border-color: transparent;
-    -fx-border-width: 0 0 2px 0;
-    -fx-padding: 8 15 8 15;
-}
-
-.navbar-button:hover {
-    -fx-background-color: rgba(255,255,255,0.1);
-    -fx-border-color: #3498db;
-}
-
-.navbar-menu-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
-}
-
-.navbar-menu-button > .label {
-    -fx-text-fill: white;
-}
-
-.navbar-menu-button:hover {
-    -fx-background-color: rgba(255,255,255,0.1);
-}
-
+/* Hero Section */
 .hero-section {
-    -fx-background-color: linear-gradient(to bottom right, #2980b9, #2c3e50);
-    -fx-padding: 60px;
+    -fx-background-image: url("assets/backgroundl.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-padding: 0 60px; /* Removed vertical padding, using height instead */
+    -fx-min-height: 600px;
     -fx-alignment: center;
 }
 
 .hero-title {
+    -fx-font-family: 'Georgia', serif;
     -fx-font-size: 48px;
     -fx-font-weight: bold;
     -fx-fill: white;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, black, 10, 0.5, 0, 0);
 }
 
 .hero-subtitle {
+    -fx-font-family: 'Segoe UI', sans-serif;
     -fx-font-size: 24px;
-    -fx-fill: #ecf0f1;
-    -fx-padding: 10 0 20 0;
+    -fx-fill: #f0f0f0;
+    -fx-effect: dropshadow(gaussian, black, 5, 0.5, 0, 0);
+    -fx-padding: 10 0 30 0;
 }
 
+/* Small Hero Section */
+.small-hero-section {
+    -fx-background-image: url("assets/backgroundl.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-padding: 60px 20px;
+    -fx-alignment: center;
+}
+
+.small-hero-section .hero-title {
+    -fx-font-size: 36px;
+}
+
+/* Content Container */
+.content-container {
+    -fx-max-width: 1200px;
+    -fx-padding: 20px;
+}
+
+/* Action Button na Hero */
 .action-button {
-    -fx-background-color: #e74c3c;
-    -fx-text-fill: white;
+    -fx-background-color: #8C6A52; /* Warm Oak */
+    -fx-text-fill: #F4F1E8;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-padding: 12 30 12 30;
-    -fx-background-radius: 30;
+    -fx-background-radius: 4; /* Mniej zaokrąglone, bardziej formalne */
     -fx-cursor: hand;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-border-color: #6D5240;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 0, 2);
 }
 
 .action-button:hover {
-    -fx-background-color: #c0392b;
+    -fx-background-color: #7A5C45;
 }
 
+/* Features Section */
 .features-section {
     -fx-padding: 40px;
     -fx-alignment: center;
     -fx-spacing: 30px;
+    -fx-background-color: #F4F1E8;
 }
 
 .feature-card {
-    -fx-background-color: white;
-    -fx-padding: 20px;
-    -fx-background-radius: 10;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-background-color: #FFFFFF; /* Czysty papier na kontrast */
+    -fx-padding: 25px;
+    -fx-background-radius: 2;
+    -fx-border-color: #C7C0B8;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
     -fx-min-width: 250px;
     -fx-alignment: center;
 }
 
 .feature-title {
-    -fx-font-size: 18px;
+    -fx-font-family: 'Georgia', serif;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+    -fx-text-fill: #1C2A39; /* Ink Navy */
+    -fx-padding: 0 0 10 0;
 }
 
 .feature-description {
     -fx-font-size: 14px;
-    -fx-text-fill: #7f8c8d;
+    -fx-text-fill: #2B2B2B; /* Ink Charcoal */
     -fx-text-alignment: center;
     -fx-wrap-text: true;
+    -fx-line-spacing: 4px;
 }

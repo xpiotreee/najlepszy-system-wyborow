@@ -9,7 +9,7 @@
 
 <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.HomeController">
    <content>
-      <VBox style="-fx-background-color: #f4f4f4;">
+      <VBox style="-fx-background-color: #f4f4f4;" alignment="TOP_CENTER">
          <!-- Hero Section -->
          <VBox styleClass="hero-section" alignment="CENTER" spacing="15">
             <Text styleClass="hero-title" text="Twój Głos Ma Znaczenie" />
@@ -17,26 +17,28 @@
             <Button styleClass="action-button" text="Przejdź do głosowania" onAction="#handleGoToElections"/>
          </VBox>
 
-         <!-- Features Section -->
-         <HBox styleClass="features-section" alignment="CENTER">
-            <VBox styleClass="feature-card">
-               <Label styleClass="feature-title" text="Bezpieczeństwo" />
-               <Label styleClass="feature-description" text="Gwarantujemy pełną anonimowość i bezpieczeństwo Twojego głosu dzięki zaawansowanym technologiom szyfrowania." />
-            </VBox>
-            
-            <VBox styleClass="feature-card">
-               <Label styleClass="feature-title" text="Przejrzystość" />
-               <Label styleClass="feature-description" text="Wyniki wyborów są dostępne natychmiast po ich zakończeniu, zapewniając pełną transparentność procesu." />
-            </VBox>
-            
-            <VBox styleClass="feature-card">
-               <Label styleClass="feature-title" text="Dostępność" />
-               <Label styleClass="feature-description" text="Głosuj w wyznaczonych punktach wyborczych. Twój głos jest kluczowy dla naszej społeczności." />
-            </VBox>
-         </HBox>
-         
-         <VBox alignment="CENTER" style="-fx-padding: 40px;">
-             <Text style="-fx-font-size: 14px; -fx-fill: #95a5a6;" text="© 2026 Najlepszy System Wyborów. Wszelkie prawa zastrzeżone." />
+         <VBox styleClass="content-container" alignment="CENTER" spacing="20">
+             <!-- Features Section -->
+             <HBox styleClass="features-section" alignment="CENTER">
+                <VBox styleClass="feature-card">
+                   <Label styleClass="feature-title" text="Bezpieczeństwo" />
+                   <Label styleClass="feature-description" text="Gwarantujemy pełną anonimowość i bezpieczeństwo Twojego głosu dzięki zaawansowanym technologiom szyfrowania." />
+                </VBox>
+                
+                <VBox styleClass="feature-card">
+                   <Label styleClass="feature-title" text="Przejrzystość" />
+                   <Label styleClass="feature-description" text="Wyniki wyborów są dostępne natychmiast po ich zakończeniu, zapewniając pełną transparentność procesu." />
+                </VBox>
+                
+                <VBox styleClass="feature-card">
+                   <Label styleClass="feature-title" text="Dostępność" />
+                   <Label styleClass="feature-description" text="Głosuj w wyznaczonych punktach wyborczych. Twój głos jest kluczowy dla naszej społeczności." />
+                </VBox>
+             </HBox>
+             
+             <VBox alignment="CENTER" style="-fx-padding: 40px;">
+                 <Text style="-fx-font-size: 14px; -fx-fill: #95a5a6;" text="© 2026 Najlepszy System Wyborów. Wszelkie prawa zastrzeżone." />
+             </VBox>
          </VBox>
       </VBox>
    </content>

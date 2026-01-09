@@ -24,7 +24,7 @@ public class Main extends Application {
         NavigationController mainController = loader.getController();
         AppProvider.getInstance().setMainController(mainController);
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root, 1000, 700);
         String css = Objects.requireNonNull(this.getClass().getResource("main.css")).toExternalForm();
         String homeCss = Objects.requireNonNull(this.getClass().getResource("home.css")).toExternalForm();
         scene.getStylesheets().addAll(css, homeCss);

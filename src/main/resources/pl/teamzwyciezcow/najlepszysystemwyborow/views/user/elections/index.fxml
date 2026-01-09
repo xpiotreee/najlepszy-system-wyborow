@@ -1,40 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundlis" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.user.elections.IndexController">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.user.elections.IndexController">
     <top>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lista wyborów" textAlignment="CENTER">
-                    <font>
-                        <Font name="System Bold" size="48.0" />
-                    </font>
-                </Text>
-            </children>
-        </HBox>
+        <VBox styleClass="small-hero-section" alignment="CENTER" maxWidth="Infinity">
+            <Text styleClass="hero-title" text="Lista wyborów" />
+        </VBox>
     </top>
     <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-            <children>
-                <TableView fx:id="electionTable" prefHeight="200.0" prefWidth="200.0" styleClass="tabelkal">
-                    <columns>
-                        <TableColumn fx:id="titleColumn" prefWidth="100.800048828125" text="Tytuł wyborów:" />
-                        <TableColumn fx:id="startDateColumn" prefWidth="109.5999755859375" text="Data rozpoczęcia:" />
-                        <TableColumn fx:id="endDateColumn" prefWidth="112.79998779296875" text="Data zakończenia:" />
-                        <TableColumn fx:id="votesColumn" minWidth="0.0" prefWidth="175.20001220703125" text="Liczba oddanych głosów:" />
-                        <!-- Tutaj będzie przycisk generowany przez kontroler -->
-                        <TableColumn fx:id="actionColumn" prefWidth="100.0" text="Głosowanie" />
-                    </columns>
-                </TableView>
-                <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" />
-            </children>
+        <VBox alignment="TOP_CENTER" maxWidth="Infinity" maxHeight="Infinity">
+            <VBox styleClass="content-container" alignment="TOP_CENTER" maxWidth="Infinity" maxHeight="Infinity" VBox.vgrow="ALWAYS">
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox fx:id="cardsContainer" spacing="30.0" style="-fx-padding: 0; -fx-alignment: top-center;">
+                            <!-- Cards will be added here dynamically -->
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </VBox>
         </VBox>
     </center>
 </BorderPane>

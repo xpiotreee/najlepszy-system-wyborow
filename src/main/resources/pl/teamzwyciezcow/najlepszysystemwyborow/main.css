@@ -1,59 +1,21 @@
-.background {
-    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundl.jpg");
-    -fx-background-size: cover;
-    -fx-background-position: center center;
-    -fx-background-repeat: no-repeat;
-}
-.blur_field{
-    -fx-opacity: 0.3;
-    -fx-border-color: black;
-    -fx-border-width: 0.5px;
-    -fx-border-radius: 16px;
-    -fx-background-radius: 16px;
-    -fx-control-inner-background-radius: 16px;
-}
-.blur_field:hover{
-    -fx-opacity: 0.5;
-    -fx-background-color:lightgray;
-}
-/* 2. The Internal Input: Make transparent to show parent's style */
-.blur_field > .text-field {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-    /* Add padding here to move text away from the curved border */
-    -fx-padding: 0 0 0 10;
+/* Paleta kolorów - zachowana dla ogólnego tła i tekstów */
+* {
+    -fx-primary-color: #8C6A52;      /* Warm Oak */
+    -fx-background-color-main: #F4F1E8; /* Aged Paper */
+    -fx-accent-color: #1C2A39;       /* Ink Navy */
+    -fx-text-color: #2B2B2B;         /* Ink Charcoal */
+    -fx-border-color-inactive: #C7C0B8; /* Neutral Taupe */
 }
 
-/* 3. The Arrow Button: Make transparent (or style separately) */
-.blur_field > .arrow-button {
-    -fx-background-color: transparent;
-    -fx-cursor: hand;
-}
-.guzik{
-    -fx-opacity: 0.7;
-    -fx-border-radius: 16;
-    -fx-background-radius: 16;
-    -fx-border-color: lightgray;
-    -fx-border-width: 1px;
-}
-.guzik:hover{
-    -fx-opacity: 0.5;
-
-    }
-.lista-zakladki{
--fx-border-width: 1px;
--fx-border-color: black;
-}
-.main-container {
-    -fx-padding: 30;
-    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundl.jpg");
-    -fx-background-size: cover;
-    -fx-background-position: center center;
-    -fx-background-repeat: no-repeat;
+.root {
+    -fx-background-color: -fx-background-color-main;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-size: 14px;
 }
 
-.label {
-    -fx-text-fill: black;
+/* Teksty */
+.label, .text {
+    -fx-text-fill: black; /* Powrót do black z backupu */
     -fx-font-size: 14px;
 }
 
@@ -68,13 +30,27 @@
     -fx-font-weight: bold;
 }
 
-.text-field, .text-area, .date-picker .lookup(".text-field"), .combo-box {
-    -fx-background-color: #2c2c2c;
+.label-bold {
+    -fx-font-weight: bold;
+}
+
+/* Przyciski */
+.button {
+    -fx-cursor: hand;
+}
+
+.guzik, .guzikl {
+    -fx-background-color: -fx-primary-color;
     -fx-text-fill: white;
-    -fx-prompt-text-fill: #888;
-    -fx-background-radius: 5;
-    -fx-border-color: #444;
-    -fx-border-radius: 5;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-border-width: 0;
+    -fx-padding: 8 16;
+    -fx-font-weight: bold;
+}
+
+.guzik:hover, .guzikl:hover {
+    -fx-background-color: derive(-fx-primary-color, 15%);
 }
 
 .button-primary {
@@ -87,34 +63,188 @@
     -fx-font-weight: bold;
     -fx-font-size: 15px;
     -fx-padding: 10 20;
+    -fx-background-radius: 4;
+}
+
+.button-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-primary-color;
+    -fx-border-radius: 4;
+    -fx-text-fill: -fx-primary-color;
+    -fx-border-width: 1.5;
+}
+
+/* Pola tekstowe i inputy */
+.text-field, .text-area, .date-picker > .text-field, .combo-box {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: #888;
+    -fx-background-radius: 4;
+    -fx-border-color: -fx-border-color-inactive;
+    -fx-border-radius: 4;
+}
+
+.blur_field {
+    /* Keeping blur_field structure if needed, but making it standard */
+    -fx-opacity: 1.0;
+    -fx-border-color: -fx-border-color-inactive;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.blur_field:hover {
+    -fx-opacity: 1.0;
+    -fx-border-color: -fx-accent-color;
+}
+
+.blur_field > .text-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0 0 0 10;
+}
+
+.blur_field > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+/* CheckBox i RadioButton */
+.check-box .box, .radio-button .radio {
+    -fx-background-color: white;
+    -fx-border-color: -fx-border-color-inactive;
+    -fx-border-radius: 2;
+}
+
+.check-box:selected .box, .radio-button:selected .radio {
+    -fx-border-color: -fx-accent-color;
+}
+
+.check-box:selected .mark, .radio-button:selected .dot {
+    -fx-background-color: -fx-accent-color;
+}
+
+/* Navbar */
+.navbar {
+    -fx-background-color: -fx-primary-color;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.navbar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-background-color-main;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: transparent;
+}
+
+.navbar-button:hover {
+    -fx-background-color: rgba(244, 241, 232, 0.15);
+    -fx-border-color: -fx-background-color-main;
+}
+
+.navbar-menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-background-color-main;
+    -fx-font-weight: bold;
+}
+
+.navbar-menu-button > .label {
+    -fx-text-fill: -fx-background-color-main;
+}
+
+.navbar-menu-button:hover {
+    -fx-background-color: rgba(244, 241, 232, 0.15);
+}
+
+/* Tabele */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: -fx-border-color-inactive;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -fx-primary-color;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-background-color-main;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent -fx-border-color-inactive transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(140, 106, 82, 0.2); 
+    -fx-text-fill: -fx-text-color;
+}
+
+/* ScrollPane */
+.scroll-pane {
+    -fx-background-color: -fx-background-color-main;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: -fx-background-color-main;
+}
+
+/* Kontenery */
+.main-container {
+    -fx-padding: 30;
+    -fx-background-color: -fx-background-color-main;
 }
 
 .create-kandydat-pane {
     -fx-padding: 15;
-    -fx-background-color: #1e1e1e;
-    -fx-border-color: #333;
+    -fx-background-color: white;
+    -fx-border-color: -fx-border-color-inactive;
     -fx-border-radius: 10;
-    -fx-opacity: 0.5;
 }
+
 .kolorek {
-    -fx-text-fill: white;
-    -fx-prompt-text-fill: white;
-    -fx-opacity:1;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: #888;
+    -fx-opacity: 1;
 }
-.backgroundlis{
-    -fx-background-image: url("/pl/teamzwyciezcow/najlepszysystemwyborow/assets/backgroundli.jpg");
+
+/* Karty kandydatów */
+.candidate-card {
+    -fx-border-color: -fx-border-color-inactive;
+    -fx-border-radius: 5;
+    -fx-padding: 15;
+    -fx-background-color: white; 
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+/* Tło dla login screenów itp */
+.background, .login-background {
+    -fx-background-image: url("assets/backgroundl.jpg");
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
 }
-.tabelkal{
-    -fx-opacity: 0.5;
+
+.login-card {
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 20, 0, 0, 0);
+    -fx-padding: 40;
+    -fx-alignment: center;
+    -fx-spacing: 20;
 }
-.guzikl{
-    -fx-opacity: 0.7;
-    -fx-border-radius: 16;
-    -fx-background-radius: 16;
-    -fx-border-color: lightgray;
-    -fx-border-width: 1px;
+
+.tabelkal {
+    -fx-opacity: 1.0;
+    -fx-background-color: white;
 }
 

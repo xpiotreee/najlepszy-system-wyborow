@@ -8,28 +8,30 @@
 
 <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.teamzwyciezcow.najlepszysystemwyborow.controllers.admin.HomeController">
    <content>
-      <VBox style="-fx-background-color: #f4f4f4;">
+      <VBox style="-fx-background-color: #f4f4f4;" alignment="TOP_CENTER">
          <!-- Hero Section -->
          <VBox styleClass="hero-section" alignment="CENTER" spacing="15" style="-fx-background-color: linear-gradient(to bottom right, #2c3e50, #34495e);">
             <Text styleClass="hero-title" text="Panel Administratora" />
             <Text styleClass="hero-subtitle" text="Zarządzaj wyborami, kandydatami i użytkownikami" />
          </VBox>
 
-         <!-- Features Section -->
-         <HBox styleClass="features-section" alignment="CENTER">
-            <VBox styleClass="feature-card" onMouseClicked="#handleManageElections" style="-fx-cursor: hand;">
-               <Label styleClass="feature-title" text="Wybory" />
-               <Label styleClass="feature-description" text="Twórz nowe głosowania, edytuj istniejące i przeglądaj wyniki." />
-            </VBox>
-            
-            <VBox styleClass="feature-card" onMouseClicked="#handleManageCandidates" style="-fx-cursor: hand;">
-               <Label styleClass="feature-title" text="Kandydaci" />
-               <Label styleClass="feature-description" text="Dodawaj i edytuj kandydatów, przypisuj ich do wyborów." />
-            </VBox>
-         </HBox>
-         
-         <VBox alignment="CENTER" style="-fx-padding: 40px;">
-             <Text style="-fx-font-size: 14px; -fx-fill: #95a5a6;" text="© 2026 Najlepszy System Wyborów - Panel Administracyjny" />
+         <VBox styleClass="content-container" alignment="CENTER" spacing="20">
+             <!-- Features Section -->
+             <HBox styleClass="features-section" alignment="CENTER">
+                <VBox styleClass="feature-card" onMouseClicked="#handleManageElections" style="-fx-cursor: hand;">
+                   <Label styleClass="feature-title" text="Wybory" />
+                   <Label styleClass="feature-description" text="Twórz nowe głosowania, edytuj istniejące i przeglądaj wyniki." />
+                </VBox>
+                
+                <VBox styleClass="feature-card" onMouseClicked="#handleManageCandidates" style="-fx-cursor: hand;">
+                   <Label styleClass="feature-title" text="Kandydaci" />
+                   <Label styleClass="feature-description" text="Dodawaj i edytuj kandydatów, przypisuj ich do wyborów." />
+                </VBox>
+             </HBox>
+             
+             <VBox alignment="CENTER" style="-fx-padding: 40px;">
+                 <Text style="-fx-font-size: 14px; -fx-fill: #95a5a6;" text="© 2026 Najlepszy System Wyborów - Panel Administracyjny" />
+             </VBox>
          </VBox>
       </VBox>
    </content>
