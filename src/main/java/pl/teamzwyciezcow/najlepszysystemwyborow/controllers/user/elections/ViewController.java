@@ -9,6 +9,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.scene.Node;
+import javafx.scene.text.Text;
 import pl.teamzwyciezcow.najlepszysystemwyborow.AppProvider;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Candidate;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
@@ -16,6 +17,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.models.ResultVisibility;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.User;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Vote;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.VoteService;
+import pl.teamzwyciezcow.najlepszysystemwyborow.utils.DateUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ import java.util.stream.Collectors;
 public class ViewController {
 
     @FXML
-    private Label titleLabel;
+    private Text titleLabel;
 
     @FXML
     private Label descriptionLabel;
@@ -49,7 +51,9 @@ public class ViewController {
         this.currentElection = election;
         titleLabel.setText(election.getTitle());
         descriptionLabel.setText(election.getDescription());
-        dateLabel.setText("Od: " + election.getStartDate() + " Do: " + election.getEndDate());
+        dateLabel.setText(String.format("Od: %s  Do: %s", 
+                DateUtils.format(election.getStartDate()), 
+                DateUtils.format(election.getEndDate())));
         
         User user = AppProvider.getInstance().getUserService().getLoggedIn();
         VoteService voteService = AppProvider.getInstance().getVoteService();

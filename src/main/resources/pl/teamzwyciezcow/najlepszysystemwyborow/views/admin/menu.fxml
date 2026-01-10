@@ -9,6 +9,8 @@
       <Button mnemonicParsing="false" onAction="#handleShowAdminHome" styleClass="navbar-button" text="Panel Admina" />
       <Button mnemonicParsing="false" onAction="#handleShowAdminElections" styleClass="navbar-button" text="Zarządzaj Wyborami" />
       <Button mnemonicParsing="false" onAction="#handleShowAdminCandidates" styleClass="navbar-button" text="Zarządzaj Kandydatami" />
+      <Button mnemonicParsing="false" onAction="#handleShowAdminUsers" styleClass="navbar-button" text="Użytkownicy" />
+      <Button mnemonicParsing="false" onAction="#handleShowAdminVotes" styleClass="navbar-button" text="Głosy" />
       <Region HBox.hgrow="ALWAYS" />
       <Button mnemonicParsing="false" onAction="#handleLogout" styleClass="navbar-button" text="Wyloguj" />
    </children>

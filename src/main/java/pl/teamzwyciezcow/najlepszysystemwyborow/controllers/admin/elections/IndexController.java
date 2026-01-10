@@ -15,6 +15,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.AppProvider;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.ElectionService;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.VoteService;
+import pl.teamzwyciezcow.najlepszysystemwyborow.utils.DateUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,10 +29,10 @@ public class IndexController {
     private TableColumn<Election, String> titleColumn;
 
     @FXML
-    private TableColumn<Election, LocalDateTime> startDateColumn;
+    private TableColumn<Election, String> startDateColumn;
 
     @FXML
-    private TableColumn<Election, LocalDateTime> endDateColumn;
+    private TableColumn<Election, String> endDateColumn;
 
     @FXML
     private TableColumn<Election, String> votesColumn;
@@ -50,8 +51,8 @@ public class IndexController {
     @FXML
     public void initialize() {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        startDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(DateUtils.format(cellData.getValue().getStartDate())));
+        endDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(DateUtils.format(cellData.getValue().getEndDate())));
         
         votesColumn.setCellValueFactory(cellData -> {
             int count = voteService.getVoteCount(cellData.getValue().getId());

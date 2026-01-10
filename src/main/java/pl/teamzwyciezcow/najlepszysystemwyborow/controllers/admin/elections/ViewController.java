@@ -7,8 +7,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.AppProvider;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Candidate;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.VoteService;
-
-import java.time.format.DateTimeFormatter;
+import pl.teamzwyciezcow.najlepszysystemwyborow.utils.DateUtils;
 
 public class ViewController {
 
@@ -19,15 +18,13 @@ public class ViewController {
     @FXML private Label visibilityLabel;
     @FXML private VBox candidatesBox;
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
     public void setElection(Election election) {
         if (election == null) return;
 
         titleLabel.setText(election.getTitle());
         descriptionLabel.setText(election.getDescription());
-        startDateLabel.setText(election.getStartDate().format(formatter));
-        endDateLabel.setText(election.getEndDate().format(formatter));
+        startDateLabel.setText(DateUtils.format(election.getStartDate()));
+        endDateLabel.setText(DateUtils.format(election.getEndDate()));
         visibilityLabel.setText(election.getResultVisibility().name()); // Could be improved with translation
 
         VoteService voteService = AppProvider.getInstance().getVoteService();

@@ -23,6 +23,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User updateUser(Long userId, String fullName, String email, String password, String pesel) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setFullName(fullName);
+        user.setEmail(email);
+        if (password != null && !password.isEmpty()) {
+            user.setPassword(password);
+        }
+        user.setPesel(pesel);
+        userRepository.save(user);
+        return user;
+    }
+
+    @Override
     public User register(String fullName, String email, String password, String pesel) throws Exception {
         boolean isExisting = this.userRepository.findAll(null, email).isEmpty();
         if (isExisting) {

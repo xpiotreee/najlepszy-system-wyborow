@@ -13,6 +13,7 @@
     -fx-font-size: 48px;
     -fx-font-weight: bold;
     -fx-fill: white;
+    -fx-text-fill: white;
     -fx-effect: dropshadow(gaussian, black, 10, 0.5, 0, 0);
 }
 
@@ -20,6 +21,7 @@
     -fx-font-family: 'Segoe UI', sans-serif;
     -fx-font-size: 24px;
     -fx-fill: #f0f0f0;
+    -fx-text-fill: #f0f0f0;
     -fx-effect: dropshadow(gaussian, black, 5, 0.5, 0, 0);
     -fx-padding: 10 0 30 0;
 }
@@ -31,10 +33,6 @@
     -fx-background-position: center center;
     -fx-padding: 60px 20px;
     -fx-alignment: center;
-}
-
-.small-hero-section .hero-title {
-    -fx-font-size: 36px;
 }
 
 /* Content Container */

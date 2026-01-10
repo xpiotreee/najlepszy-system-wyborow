@@ -7,9 +7,9 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.models.Election;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.ResultVisibility;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.User;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.VoteService;
+import pl.teamzwyciezcow.najlepszysystemwyborow.utils.DateUtils;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class CardController {
 
@@ -23,14 +23,13 @@ public class CardController {
     private Label votesLabel;
 
     private Election election;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public void setElection(Election election) {
         this.election = election;
         titleLabel.setText(election.getTitle());
         datesLabel.setText(String.format("%s - %s", 
-                election.getStartDate().format(formatter), 
-                election.getEndDate().format(formatter)));
+                DateUtils.format(election.getStartDate()), 
+                DateUtils.format(election.getEndDate())));
 
         // Status Logic
         LocalDateTime now = LocalDateTime.now();

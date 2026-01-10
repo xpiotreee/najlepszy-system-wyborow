@@ -21,6 +21,16 @@ public class MenuController {
     }
 
     @FXML
+    private void handleShowAdminUsers() {
+        AppProvider.getInstance().getMainController().loadView("admin/users/index");
+    }
+
+    @FXML
+    private void handleShowAdminVotes() {
+        AppProvider.getInstance().getMainController().loadView("admin/votes/index");
+    }
+
+    @FXML
     private void handleLogout() {
         AppProvider.getInstance().getMainController().showDefaultMenu();
         AppProvider.getInstance().getMainController().loadView("home");
