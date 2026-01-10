@@ -14,6 +14,7 @@ public interface VoteService {
     void castVotes(User user, Election election, List<Candidate> candidates) throws Exception;
     boolean hasVoted(User user, Election election);
     List<Vote> getUserVotes(User user, Election election);
+    List<Vote> getVotesByUser(User user);
     int getVoteCount(Long electionId);
     int getCandidateVoteCount(Long candidateId, Long electionId);
     VoteRepository getRepository();

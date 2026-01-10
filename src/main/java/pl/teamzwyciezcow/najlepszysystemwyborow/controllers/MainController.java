@@ -38,8 +38,8 @@ public class MainController implements NavigationController {
         if (loggedIn != null) {
             userMenuButton.setText(loggedIn.getFullName()); // Or "Profil"
             
-            MenuItem profileItem = new MenuItem("Profil"); // Placeholder for now
-            // profileItem.setOnAction(e -> loadView("user/profile")); 
+            MenuItem profileItem = new MenuItem("Profil"); 
+            profileItem.setOnAction(e -> loadView("user/profile/profile")); 
 
             MenuItem logoutItem = new MenuItem("Wyloguj");
             logoutItem.setOnAction(e -> handleLogoutUser());

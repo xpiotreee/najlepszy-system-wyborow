@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -17,7 +17,7 @@
 
          <VBox styleClass="content-container" alignment="CENTER" spacing="20">
              <!-- Features Section -->
-             <HBox styleClass="features-section" alignment="CENTER">
+             <FlowPane styleClass="features-section" alignment="CENTER" hgap="30" vgap="30">
                 <VBox styleClass="feature-card" onMouseClicked="#handleManageElections" style="-fx-cursor: hand;">
                    <Label styleClass="feature-title" text="Wybory" />
                    <Label styleClass="feature-description" text="Twórz nowe głosowania, edytuj istniejące i przeglądaj wyniki." />
@@ -27,7 +27,17 @@
                    <Label styleClass="feature-title" text="Kandydaci" />
                    <Label styleClass="feature-description" text="Dodawaj i edytuj kandydatów, przypisuj ich do wyborów." />
                 </VBox>
-             </HBox>
+
+                <VBox styleClass="feature-card" onMouseClicked="#handleManageUsers" style="-fx-cursor: hand;">
+                   <Label styleClass="feature-title" text="Użytkownicy" />
+                   <Label styleClass="feature-description" text="Zarządzaj kontami użytkowników, dodawaj nowych i edytuj dane." />
+                </VBox>
+
+                <VBox styleClass="feature-card" onMouseClicked="#handleManageVotes" style="-fx-cursor: hand;">
+                   <Label styleClass="feature-title" text="Głosy" />
+                   <Label styleClass="feature-description" text="Przeglądaj historię głosów, zarządzaj błędnymi wpisami." />
+                </VBox>
+             </FlowPane>
              
              <VBox alignment="CENTER" style="-fx-padding: 40px;">
                  <Text style="-fx-font-size: 14px; -fx-fill: #95a5a6;" text="© 2026 Najlepszy System Wyborów - Panel Administracyjny" />

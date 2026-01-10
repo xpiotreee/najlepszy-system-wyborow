@@ -32,13 +32,18 @@ public class UserServiceImpl implements UserService {
         }
         user.setPesel(pesel);
         userRepository.save(user);
+        
+        if (this.loggedIn != null && this.loggedIn.getId() == userId) {
+            this.loggedIn = user;
+        }
+        
         return user;
     }
 
     @Override
     public User register(String fullName, String email, String password, String pesel) throws Exception {
-        boolean isExisting = this.userRepository.findAll(null, email).isEmpty();
-        if (isExisting) {
+        boolean emailTaken = !this.userRepository.findAll(null, email).isEmpty();
+        if (emailTaken) {
             throw new Exception(email + " już jest zajęty.");
         }
 

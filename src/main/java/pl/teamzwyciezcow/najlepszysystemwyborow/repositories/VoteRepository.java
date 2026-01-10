@@ -13,6 +13,7 @@ public interface VoteRepository {
     List<Vote> findByElectionId(Long electionId);
     boolean hasUserVoted(Long userId, Long electionId);
     List<Vote> findUserVotes(Long userId, Long electionId);
+    List<Vote> findByUserId(Long userId);
     int countByElectionId(Long electionId);
     int countByCandidateId(Long candidateId, Long electionId);
 }

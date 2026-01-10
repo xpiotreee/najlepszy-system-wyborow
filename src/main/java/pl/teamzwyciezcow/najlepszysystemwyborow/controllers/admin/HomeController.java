@@ -14,4 +14,14 @@ public class HomeController {
     private void handleManageCandidates() {
         AppProvider.getInstance().getMainController().loadView("admin/candidates/index");
     }
+
+    @FXML
+    private void handleManageUsers() {
+        AppProvider.getInstance().getMainController().loadView("admin/users/index");
+    }
+
+    @FXML
+    private void handleManageVotes() {
+        AppProvider.getInstance().getMainController().loadView("admin/votes/index");
+    }
 }

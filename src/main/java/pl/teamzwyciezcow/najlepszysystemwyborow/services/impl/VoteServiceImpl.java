@@ -69,6 +69,12 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
+    public List<Vote> getVotesByUser(User user) {
+        if (user == null) return List.of();
+        return voteRepository.findByUserId(user.getId());
+    }
+
+    @Override
     public int getVoteCount(Long electionId) {
         return voteRepository.countByElectionId(electionId);
     }

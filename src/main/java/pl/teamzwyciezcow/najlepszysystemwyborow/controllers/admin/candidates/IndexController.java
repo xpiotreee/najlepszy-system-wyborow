@@ -44,7 +44,7 @@ public class IndexController {
                 List<String> titles = cellData.getValue().getElections().stream()
                         .map(e -> e.getTitle())
                         .toList();
-                return new SimpleStringProperty(String.join(", ", titles));
+                return new SimpleStringProperty(String.join("\n", titles));
             } else {
                 return new SimpleStringProperty("Brak przypisania");
             }

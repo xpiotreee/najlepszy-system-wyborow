@@ -54,6 +54,16 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
+    public List<Vote> findByUserId(Long userId) {
+        return DB.find(Vote.class)
+                .fetch("election")
+                .fetch("candidate")
+                .where()
+                .eq("user.id", userId)
+                .findList();
+    }
+
+    @Override
     public int countByElectionId(Long electionId) {
         return DB.find(Vote.class).where().eq("election.id", electionId).findCount();
     }
