@@ -6,6 +6,7 @@ import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.AdminRepository;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.UserRepository;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.AdminService;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.UserService;
+import pl.teamzwyciezcow.najlepszysystemwyborow.utils.SecurityUtils;
 
 import java.util.NoSuchElementException;
 
@@ -19,7 +20,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin createUser(String fullName, String email, String password) {
-        Admin admin = new Admin(fullName, email, password);
+        String hashedPassword = SecurityUtils.hashPassword(password);
+        Admin admin = new Admin(fullName, email, hashedPassword);
         this.adminRepository.save(admin);
 
         return admin;
@@ -34,8 +36,7 @@ public class AdminServiceImpl implements AdminService {
             throw new Exception("Nie znaleziono admina z emailem: " + email);
         }
 
-        
-        if (!admin.getPassword().equals(password)) {
+        if (!SecurityUtils.verifyPassword(password, admin.getPassword())) {
             throw new Exception("Niepoprawne dane logowania.");
         }
 

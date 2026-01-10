@@ -3,6 +3,7 @@ package pl.teamzwyciezcow.najlepszysystemwyborow.services.impl;
 import pl.teamzwyciezcow.najlepszysystemwyborow.models.User;
 import pl.teamzwyciezcow.najlepszysystemwyborow.repositories.UserRepository;
 import pl.teamzwyciezcow.najlepszysystemwyborow.services.UserService;
+import pl.teamzwyciezcow.najlepszysystemwyborow.utils.SecurityUtils;
 
 import java.util.NoSuchElementException;
 
@@ -16,7 +17,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(String fullName, String email, String password, String pesel) {
-        User user = new User(fullName, pesel, email, password);
+        String hashedPassword = SecurityUtils.hashPassword(password);
+        User user = new User(fullName, pesel, email, hashedPassword);
         this.userRepository.save(user);
 
         return user;
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
         user.setFullName(fullName);
         user.setEmail(email);
         if (password != null && !password.isEmpty()) {
-            user.setPassword(password);
+            user.setPassword(SecurityUtils.hashPassword(password));
         }
         user.setPesel(pesel);
         userRepository.save(user);
@@ -60,8 +62,7 @@ public class UserServiceImpl implements UserService {
             throw new Exception("Nie znaleziono użytkownika z emailem: " + email);
         }
 
-        
-        if (!user.getPassword().equals(password)) {
+        if (!SecurityUtils.verifyPassword(password, user.getPassword())) {
             throw new Exception("Niepoprawne dane logowania.");
         }
 
